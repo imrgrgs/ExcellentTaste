@@ -145,6 +145,23 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                &nbsp;
+                            </div>
+                            <div class="col-md-6">
+                                <div class="g-recaptcha"
+                                     data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}">
+                                </div>
+
+                                @if ($errors->has('g-recaptcha-response'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
