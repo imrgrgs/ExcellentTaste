@@ -48,6 +48,7 @@
                             <label for="customer" class="col-sm-2 col-form-label">Gasten</label>
                             <div class="col-sm-10">
                                 <select id="customer" class="select form-control" name="customer">
+                                    <option>Kies een optie..</option>
                                     @foreach($customers as $customer)
                                         <option value="{{ $customer->id }}">{{ $customer->number }}</option>
                                     @endforeach
