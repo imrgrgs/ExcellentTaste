@@ -25,9 +25,9 @@ class TablesTableSeeder extends Seeder
             ]);
         }
 
-        for ($x = 0; $x <= 8; $x++) {
+        for ($x = 0; $x <= 3; $x++) {
             \App\Table::create([
-                'seat_count' => 3,
+                'seat_count' => 8,
                 'active' => 1
             ]);
         }

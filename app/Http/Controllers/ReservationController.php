@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Reservation;
+use App\Rules\HoursBetween;
 use App\Table;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -15,6 +17,7 @@ class ReservationController extends Controller
 
         $view->table_groups = Table::all()->groupBy('seat_count');
         $view->reservations = Reservation::all();
+        $view->customers = User::all();
 
         return $view;
     }
@@ -24,8 +27,12 @@ class ReservationController extends Controller
         $request->validate([
             'date' => 'required',
             'tables' => 'required|max:2',
+            'start_time' => new HoursBetween,
             'seat' => 'required|digits_between:0,8'
         ]);
+
+        $user = $request->exists('customer_id') ? User::find($request->get('customer_id')) : auth()->user();
+
         $date = str_replace('/', '-', $request->get('date'));
 
         $tables = collect($request->get('tables'))->keyBy(function ($item) {
@@ -37,7 +44,7 @@ class ReservationController extends Controller
             ];
         })->toArray();
 
-        auth()->user()->reservations()->create([
+        $user->reservations()->create([
             'date' => Carbon::parse($date),
             'number' => Carbon::parse($date)->format('Ymd'). implode($request->get('tables')),
         ])->tables()->sync($tables);
