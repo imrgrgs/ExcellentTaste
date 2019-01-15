@@ -15,6 +15,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\User::class, function (Faker $faker) {
     return [
+        'number' => $faker->unique()->numberBetween(10000, 99999),
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
         'address' => $faker->address,
