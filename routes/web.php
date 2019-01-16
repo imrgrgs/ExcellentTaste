@@ -24,4 +24,9 @@ Route::group(['middleware' => 'verified'], function () {
 
     Route::get('reservations/create', 'ReservationController@create');
     Route::post('reservations/create', 'ReservationController@save');
+
+    // administrator routes
+    Route::group(['middleware' => 'role:administrator'], function () {
+
+    });
 });
