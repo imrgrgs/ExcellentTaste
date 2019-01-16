@@ -33,14 +33,13 @@ class ReservationController extends Controller
 
         $user = $request->exists('customer_id') ? User::find($request->get('customer_id')) : auth()->user();
 
-        $date = str_replace('/', '-', $request->get('date'));
 
         $tables = collect($request->get('tables'))->keyBy(function ($item) {
             return $item;
         })->map(function () use ($date) {
             return [
-                'start' => Carbon::parse($date.' '.request()->get('start_time')),
-                'end' => Carbon::parse($date.' '.request()->get('end_time'))
+                'start' => Carbon::parse(request()->get('date').' '.request()->get('start_time')),
+                'end' => Carbon::parse(request()->get('date').' '.request()->get('end_time'))
             ];
         })->toArray();
 
