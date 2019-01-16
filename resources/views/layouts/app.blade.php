@@ -30,6 +30,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.0/css/bootstrap-slider.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css" rel="stylesheet" type="text/css">
     <link href="css/pnotify.custom.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.css" media="all" rel="stylesheet" type="text/css" />
+
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -84,6 +86,7 @@
             </nav>
         </aside>
         <main class="col offset-md-2 bg-faded py-2">
+
             @yield('content')
         </main>
     </div>
@@ -94,5 +97,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script src="{{ url('js/custom.js') }}"></script>
     @yield('scripts')
+    @include('layouts.component.notify')
 </body>
 </html>

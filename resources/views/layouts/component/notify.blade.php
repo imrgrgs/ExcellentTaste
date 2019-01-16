@@ -1,3 +1,13 @@
 @if(session()->has('success'))
-jf;alsdjf;asldf;l
-    @endif
+    <script>
+        $(document).ready(function () {
+            new PNotify({
+                title: 'Success',
+                text: `{{session()->get('success')}}`,
+                type: 'success',
+                hide: true,
+
+            });
+        });
+    </script>
+@endif

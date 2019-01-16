@@ -66,12 +66,6 @@
                 $( "#editform" ).attr('data-edit','false');
                 $('#submit').toggle()
                 $('#editform').toggle()
-                new PNotify({
-                    title: 'Opgeslagen',
-                    text: 'Uw wijzigingen zijn opgeslagen',
-                    type: 'success',
-                    hide: false
-                });
             }
         });
     </script>
