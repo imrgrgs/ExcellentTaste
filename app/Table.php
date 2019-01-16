@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Table extends Model
 {
-    public function exclusions()
+    public function excluded()
     {
         return $this->morphMany('App\Exclusion', 'excluded');
     }

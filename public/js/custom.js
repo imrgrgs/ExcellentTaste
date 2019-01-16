@@ -14,8 +14,11 @@ $('.datepicker').datepicker({
 });
 $('.select').select2();
 
-var elems = Array.prototype.slice.call(document.querySelectorAll('.switcheroo'));
+function resetSwitches() {
+    var elems = Array.prototype.slice.call(document.querySelectorAll('.switcheroo'));
+    elems.forEach(function(html) {
+        var switchery = new Switchery(html);
+    });
+}
 
-elems.forEach(function(html) {
-    var switchery = new Switchery(html);
-});
+resetSwitches()

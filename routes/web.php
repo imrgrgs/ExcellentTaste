@@ -22,6 +22,7 @@ Route::group(['middleware' => 'verified'], function () {
 
     Route::group(['prefix' => 'tables'], function ($get) {
         $get->get('exclude', 'TableController@index');
+        $get->get('excluded', 'TableController@excludes');
         $get->post('exclude', 'TableController@save');
     });
     Route::get('reservations/create', 'ReservationController@create');

@@ -11,8 +11,8 @@ class Exclusion extends Model
         'end'
     ];
 
-    public function excludeable()
+    public function excluded()
     {
-        return $this->morphTo('excluded_id', 'excluded_type');
+        return $this->morphTo();
     }
 }

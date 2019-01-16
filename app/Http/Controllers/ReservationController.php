@@ -36,7 +36,7 @@ class ReservationController extends Controller
 
         $tables = collect($request->get('tables'))->keyBy(function ($item) {
             return $item;
-        })->map(function () use ($date) {
+        })->map(function () {
             return [
                 'start' => Carbon::parse(request()->get('date').' '.request()->get('start_time')),
                 'end' => Carbon::parse(request()->get('date').' '.request()->get('end_time'))
@@ -44,8 +44,8 @@ class ReservationController extends Controller
         })->toArray();
 
         $user->reservations()->create([
-            'date' => Carbon::parse($date),
-            'number' => Carbon::parse($date)->format('Ymd'). implode($request->get('tables')),
+            'date' => Carbon::parse(request()->get('date')),
+            'number' => Carbon::parse(request()->get('date'))->format('Ymd'). implode($request->get('tables')),
         ])->tables()->sync($tables);
 
         return redirect()->to('/');
