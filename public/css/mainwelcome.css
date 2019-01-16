@@ -1,0 +1,27 @@
+/*
+	Main CSS file for welcome page
+
+*/
+
+.navbar{
+  background:transparent;
+  border-color: transparent;
+  transition: 1.4s;
+  color:#f2f2f2;
+}
+
+.navbar-brand,
+.navbar-nav li a {
+  font-size: 20px;
+  line-height: 75px;
+  height: 75px;
+  padding-top: 0;
+}
+
+.navbar a{
+	color: grey !important;
+}
+
+.navbar a:hover{
+	color: #fff !important;
+}
