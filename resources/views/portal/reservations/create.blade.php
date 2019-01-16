@@ -41,9 +41,12 @@
                             <div class="col-sm-10 form-row">
                                 <input class="form-control col-lg-4 time" type="text" name="start_time" id="start_time" value="10:00" data-default="10:00">
                                 <span class="col-lg-4 text-center">-</span>
+                                @role('administrator')
                                 <input class="time form-control col-lg-4" data-default="23:00" type="text" name="end_time" id="end_time" value="23:00">
+                                @endrole
                             </div>
                         </div>
+                        @role('administrator')
                         <div class="form-group row">
                             <label for="customer" class="col-sm-2 col-form-label">Gasten</label>
                             <div class="col-sm-10">
@@ -55,6 +58,7 @@
                                 </select>
                             </div>
                         </div>
+                        @endrole
                     </form>
                 </div>
                 <div class="card-footer">
