@@ -80,21 +80,5 @@
             }
             $('#seat').val(chairs)
         });
-
-        $('.time').focusout(function (e) {
-            let time = $(this).val().split(':');
-            if (time[0] > 22 || time[0] < 9 || time[1] > 61 || !$(this).val().includes(':')) {
-                $(this).val($(this).attr('data-default'));
-            }
-        });
-
-        $('.datepicker').datepicker({
-            format: "dd/mm/yyyy",
-            startDate: "15-01-2019",
-            clearBtn: true,
-            language: "nl",
-            todayHighlight: true
-        });
-        $('.select').select2();
     </script>
 @stop
