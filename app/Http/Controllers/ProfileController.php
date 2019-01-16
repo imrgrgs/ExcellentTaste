@@ -30,4 +30,18 @@ class ProfileController extends Controller
         return $view;
     }
 
+    public function store(Request $request)
+    {
+
+        $post = new Post();
+
+        $post->address = $request->get('address');
+        $post->email = $request->get('email');
+
+        $post->save();
+
+        return redirect()->route('profile');
+
+    }
+
 }

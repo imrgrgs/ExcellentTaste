@@ -28,6 +28,21 @@
             <div class="col-sm-10">
                 <input type="text" name="seat" class="form-control-plaintext" readonly id="seat" value="{{$user->phone}}">
             </div>
+
+            <button type="button" data-edit="false" class="btn btn-secondary" id="editform">Wijzigen</button>
         </div>
     </div>
+
+    <script>
+        $( "#editform" ).click(function() {
+            if ($(this).attr('data-edit')==='false' ){
+                $( 'input' ).removeClass( "form-control-plaintext" ).prop('readonly', false).addClass('form-control');
+                $(this).attr('data-edit','true');
+            } else{
+                $( 'input' ).addClass( "form-control-plaintext" ).prop('readonly', true).removeClass('form-control');
+                $(this).attr('data-edit','false');
+            }
+        });
+
+    </script>
     @stop
