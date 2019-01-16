@@ -33,14 +33,20 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
 
-        $post = new Post();
+        $user = auth()->user();
 
-        $post->address = $request->get('address');
-        $post->email = $request->get('email');
+        $user->first_name = $request->get('first_name');
+        $user->middle_name = $request->get('middle_name');
+        $user->last_name = $request->get('last_name');
+        $user->address = $request->get('address');
+        $user->postal = $request->get('postal');
+        $user->city = $request->get('city');
+        $user->email = $request->get('email');
+        $user->phone = $request->get('phone');
 
-        $post->save();
+        $user->save();
 
-        return redirect()->route('profile');
+        return redirect()->route('profile')->with('success','profiel opgeslagen');
 
     }
 
