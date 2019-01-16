@@ -4,6 +4,22 @@
 
 */
 
+.navbar{
+	height:100vh;
+}
+
+#company-name{
+	font-size: 26px;
+}
+
+.nav-item{
+	font-size: 20px;
+}
+
+.nav-item a{
+	margin-top: 10px;
+}
+
 .invalid-feedback{
 	display: block !important;
 }
