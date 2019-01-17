@@ -9,7 +9,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class ReservationController extends Controller
+class ReservationsController extends Controller
 {
     public function create()
     {
@@ -27,7 +27,6 @@ class ReservationController extends Controller
         $request->validate([
             'date' => 'required',
             'tables' => 'required|max:2',
-            'start_time' => new HoursBetween,
             'seat' => 'required|digits_between:0,8'
         ]);
 
@@ -40,7 +39,7 @@ class ReservationController extends Controller
         })->map(function () use ($date) {
             return [
                 'start' => Carbon::parse($date.' '.request()->get('start_time')),
-                'end' => Carbon::parse($date.' '.request()->get('end_time'))
+                'end' => request()->get('end_time') ? Carbon::parse($date.' '.request()->get('end_time')) : Carbon::parse($date . ' ' . request()->get('start_time'))->addHour(2)
             ];
         })->toArray();
 
@@ -49,6 +48,6 @@ class ReservationController extends Controller
             'number' => Carbon::parse($date)->format('Ymd'). implode($request->get('tables')),
         ])->tables()->sync($tables);
 
-        return redirect()->to('/');
+        return redirect()->to('/home');
     }
 }
