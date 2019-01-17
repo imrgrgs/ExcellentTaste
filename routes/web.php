@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::group(['middleware' => 'verified'], function () {
+Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/profile', 'ProfileController@index')->name('profile');
     Route::post('/profile', 'ProfileController@store');
@@ -26,7 +26,7 @@ Route::group(['middleware' => 'verified'], function () {
     Route::post('reservations/create', 'ReservationController@save');
 
     // administrator routes
-    Route::group(['middleware' => 'role:administrator'], function () {
+    Route::group(['middleware' => ['auth', 'role:administrator']], function () {
     	 Route::group(['prefix' => 'users', 'as' => 'users'], function () {
             Route::get('/', 'UsersController@index');
             Route::get('/create', 'UsersController@create');
