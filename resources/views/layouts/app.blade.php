@@ -30,7 +30,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
     </head>
-    <body>
+    <body class=" bg-light">
         <div class="container-fluid">
             <div class="row">
                 <aside class="col-12 col-md-2 p-0 bg-dark fixed-top">
@@ -53,11 +53,18 @@
                                     </a>
                                 </li>
                                 @auth
-                                    <li class="nav-item">
-                                        <a class="nav-link pl-0" href="#"><i class="fas fa-ticket-alt"></i>
+                                    <li class="nav-item {{ request()->is('reservations/create') ? 'active' : '' }}">
+                                        <a class="nav-link pl-0" href="{{ url('reservations/create') }}"><i class="fas fa-ticket-alt"></i>
                                             <span class="d-none d-md-inline">Reserveren</span>
                                         </a>
                                     </li>
+                                    @role('administrator')
+                                    <li class="nav-item {{ request()->is('/tables/exclude') ? 'active' : '' }}">
+                                        <a class="nav-link pl-0" href="{{ url('tables/exclude') }}"><i class="fas fa-ban"></i>
+                                            <span class="d-none d-md-inline">Tafels uitsluiten</span>
+                                        </a>
+                                    </li>
+                                    @endrole
                                     <li class="nav-item">
                                         <a class="nav-link pl-0" href="#"><i class="fas fa-address-card"></i>
                                             <span class="d-none d-md-inline">Profiel</span>
@@ -78,7 +85,7 @@
                         </div>
                     </nav>
                 </aside>
-                <main class="col offset-md-2 bg-faded py-2">
+                <main class="col offset-md-2 py-2">
                     @yield('content')
                 </main>
             </div>

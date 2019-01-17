@@ -7,7 +7,7 @@ use App\Table;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class TableController extends Controller
+class TablesController extends Controller
 {
     public function index()
     {
@@ -24,8 +24,14 @@ class TableController extends Controller
         $start = Carbon::parse(request()->get('start_date') . ' ' . request()->get('start_time'));
         $end = Carbon::parse(request()->get('end_date') . ' ' . request()->get('end_time'));
 
+        if (!request()->has('end_date')) {
+            $end = $start->addHours(2);
+        }
+
         $tables = Table::whereHas('excluded', function ($q) use ($start, $end) {
             $q->whereBetween('start', [$start, $end])->orWhereBetween('end',[$start, $end]);
+        })->orWhereHas('excluded', function ($q) use ($start, $end) {
+            $q->where('start', '<', $start)->where('end', '>', $end);
         })->get();
 
         return $tables->pluck('id');
