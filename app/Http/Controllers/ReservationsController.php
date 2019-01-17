@@ -44,6 +44,7 @@ class ReservationsController extends Controller
         })->toArray();
 
         $user->reservations()->create([
+            'diet' => $request->get('diet'),
             'date' => Carbon::parse($date),
             'number' => Carbon::parse($date)->format('Ymd'). implode($request->get('tables')),
         ])->tables()->sync($tables);
