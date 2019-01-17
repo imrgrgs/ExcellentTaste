@@ -45,12 +45,12 @@
                 <div class="collapse navbar-collapse align-items-start">
                     <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
                         <li class="nav-item" id="company-name">
-                            <a class="nav-link pl-0 text-nowrap" href="#"><i class="fa fa-bullseye fa-fw"></i>
+                            <a class="nav-link pl-0 text-nowrap" href="/"><i class="fa fa-bullseye fa-fw"></i>
                               <span class="font-weight-bold">Excellent Taste</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link pl-0" href="#"><i class="fas fa-home"></i>
+                            <a class="nav-link pl-0" href="/home"><i class="fas fa-home"></i>
                              <span class="d-none d-md-inline">Home</span>
                            </a>
                         </li>
@@ -59,27 +59,34 @@
                               <span class="d-none d-md-inline">Menu</span>
                             </a>
                         </li>
+                        @role('administrator')
+                          <li class="nav-item">
+                              <a class="nav-link pl-0" href="/users"><i class="fas fa-users"></i>
+                                <span class="d-none d-md-inline">Gebruikers</span>
+                              </a>
+                          </li>
+                        @endrole
                         @auth
-                        <li class="nav-item">
-                            <a class="nav-link pl-0" href="#"><i class="fas fa-ticket-alt"></i>
-                              <span class="d-none d-md-inline">Reserveren</span>
+                          <li class="nav-item">
+                              <a class="nav-link pl-0" href="#"><i class="fas fa-ticket-alt"></i>
+                                <span class="d-none d-md-inline">Reserveren</span>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link pl-0" href="#"><i class="fas fa-address-card"></i>
+                                <span class="d-none d-md-inline">Profiel</span>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link pl-0" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();"><i class="fas fa-power-off"></i>
+                                <span class="d-none d-md-inline">Logout</span>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link pl-0" href="#"><i class="fas fa-address-card"></i>
-                              <span class="d-none d-md-inline">Profiel</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link pl-0" href="{{ route('logout') }}"
-                             onclick="event.preventDefault();
-                                           document.getElementById('logout-form').submit();"><i class="fas fa-power-off"></i>
-                              <span class="d-none d-md-inline">Logout</span>
-                          </a>
-                        </li>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                          @csrf
-                        </form>
+                          </li>
+                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                          </form>
                         @endauth
                     </ul>
                 </div>

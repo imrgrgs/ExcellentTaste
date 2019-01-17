@@ -27,6 +27,13 @@ Route::group(['middleware' => 'verified'], function () {
 
     // administrator routes
     Route::group(['middleware' => 'role:administrator'], function () {
-
+    	 Route::group(['prefix' => 'users', 'as' => 'users'], function () {
+            Route::get('/', 'UsersController@index');
+            Route::get('/create', 'UsersController@create');
+            Route::post('/create', 'UsersController@store');
+            Route::post('/delete', 'UsersController@destroy');
+            Route::get('/{user}/edit', 'UsersController@edit');
+            Route::post('/{user}/update', 'UsersController@update');
+        });
     });
 });
