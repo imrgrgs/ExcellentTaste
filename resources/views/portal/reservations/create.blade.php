@@ -3,13 +3,27 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="card w-100">
-                <div class="card-header">
-                    <h3>Maak een reservering</h3>
-                </div>
+            <div class="card w-100 mt-5">
                 <div class="card-body">
+                    <h3 class="card-title">Maak een reservering</h3>
                     <form method="post" action="{{ url('reservations/create') }}" id="reservate">
                         {{ csrf_field() }}
+                        <div class="form-group row">
+                            <label for="date" class="col-sm-2 col-form-label">Datum</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="date" name="date" class="form-control datepicker" value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Time</label>
+                            <div class="col-sm-10 form-row">
+                                <input class="form-control col-lg-4 time" type="text" name="start_time" id="start_time" value="10:00" data-default="10:00">
+                                <span class="col-lg-4 text-center">-</span>
+                                @role('administrator')
+                                <input class="time form-control col-lg-4" data-default="23:00" type="text" name="end_time" id="end_time" value="23:00">
+                                @endrole
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="tables" class="col-sm-2 col-form-label">Tables</label>
                             <div class="col-sm-10">
@@ -25,25 +39,14 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="seat" class="col-sm-2 col-form-label">Stoelen <small>(max. 8)</small></label>
+                            <label for="seat" class="col-sm-2 col-form-label">Stoelen
+                                <small>(max. 8)</small>
+                            </label>
                             <div class="col-sm-10">
                                 <input type="text" name="seat" class="form-control-plaintext" readonly id="seat">
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="date" class="col-sm-2 col-form-label">Datum</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="date" class="form-control datepicker">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label">Time</label>
-                            <div class="col-sm-10 form-row">
-                                <input class="form-control col-lg-4 time" type="text" name="start_time" id="start_time" value="10:00" data-default="10:00">
-                                <span class="col-lg-4 text-center">-</span>
-                                <input class="time form-control col-lg-4" data-default="23:00" type="text" name="end_time" id="end_time" value="23:00">
-                            </div>
-                        </div>
+                        @role('administrator')
                         <div class="form-group row">
                             <label for="customer" class="col-sm-2 col-form-label">Gasten</label>
                             <div class="col-sm-10">
@@ -55,10 +58,11 @@
                                 </select>
                             </div>
                         </div>
+                        @endrole
                     </form>
-                </div>
-                <div class="card-footer">
-                    <button class="btn btn-success float-right" form="reservate">Reserveer</button>
+                    <div>
+                        <button class="btn btn-success float-right" form="reservate">Reserveer</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -79,6 +83,17 @@
                 $('#seat').addClass('text-danger')
             }
             $('#seat').val(chairs)
+        });
+        $('#start_time,#date').on('change', function () {
+            $.get('/tables/excluded', {
+                start_date: $('#date').val(),
+                start_time: $('#start_time').val()
+            }).then(function (res) {
+                $('#tables option').prop('disabled', false);
+                $.each(res, function (id) {
+                    $('option[value=' + res[id] + ']').prop('disabled', true);
+                });
+            })
         });
     </script>
 @stop

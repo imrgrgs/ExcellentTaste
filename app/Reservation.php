@@ -15,5 +15,4 @@ class Reservation extends Model
     {
         return $this->belongsToMany(Table::class, 'reservation_tables')->withPivot('start', 'end');
     }
-    //
 }
