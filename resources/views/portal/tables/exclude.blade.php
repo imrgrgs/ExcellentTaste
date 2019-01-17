@@ -10,14 +10,14 @@
                     <div class="form-group row">
                         <label for="date" class="col-sm-2 col-form-label">Start</label>
                         <div class="col-sm-10 form-row">
-                            <input type="text" name="start_date" id="start_date" class="form-control datepicker col-lg-4">
+                            <input type="text" name="start_date" id="start_date" class="form-control datepicker col-lg-4" value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">
                             <input class="form-control col-lg-4 offset-md-2 time" type="text" name="start_time" id="start_time" value="10:00" data-default="10:00">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="date" class="col-sm-2 col-form-label">Eind</label>
                         <div class="col-sm-10 form-row">
-                            <input type="text" name="end_date" id="end_date" class="form-control datepicker col-lg-4">
+                            <input type="text" name="end_date" id="end_date" class="form-control datepicker col-lg-4" value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">
                             <input class="form-control offset-md-2 col-lg-4 time" type="text" name="end_time" id="end_time" value="10:00" data-default="10:00">
                         </div>
                     </div>
