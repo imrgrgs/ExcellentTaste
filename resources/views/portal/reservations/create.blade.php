@@ -11,7 +11,7 @@
                         <div class="form-group row">
                             <label for="date" class="col-sm-2 col-form-label">Datum</label>
                             <div class="col-sm-10">
-                                <input type="text" id="date" name="date" class="form-control datepicker">
+                                <input type="text" id="date" name="date" class="form-control datepicker" value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">
                             </div>
                         </div>
                         <div class="form-group row">

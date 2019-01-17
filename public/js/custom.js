@@ -7,10 +7,11 @@ $('.time').focusout(function (e) {
 
 $('.datepicker').datepicker({
     format: "dd-mm-yyyy",
-    startDate: "15-01-2019",
+    startDate: Date.now().toString(),
     clearBtn: true,
     language: "nl",
-    todayHighlight: true
+    todayHighlight: true,
+    todayBtn: "linked"
 });
 $('.select').select2();
 
