@@ -8,12 +8,12 @@ class Reservation extends Model
 {
     protected $fillable = [
         'date',
-        'number'
+        'number',
+        'diet'
     ];
 
     public function tables()
     {
         return $this->belongsToMany(Table::class, 'reservation_tables')->withPivot('start', 'end');
     }
-    //
 }
