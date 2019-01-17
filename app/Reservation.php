@@ -8,7 +8,8 @@ class Reservation extends Model
 {
     protected $fillable = [
         'date',
-        'number'
+        'number',
+        'diet'
     ];
 
     public function tables()

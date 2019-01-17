@@ -50,7 +50,7 @@
                         <div class="form-group row">
                             <label for="customer" class="col-sm-2 col-form-label">Gasten</label>
                             <div class="col-sm-10">
-                                <select id="customer" class="select form-control" name="customer">
+                                <select id="customer" class="select form-control" name="customer_id">
                                     <option>Kies een optie..</option>
                                     @foreach($customers as $customer)
                                         <option value="{{ $customer->id }}">{{ $customer->number }}</option>
@@ -59,6 +59,12 @@
                             </div>
                         </div>
                         @endrole
+                        <div class="form-group row">
+                            <label for="diet" class="col-sm-2 col-form-label">Dieet wensen</label>
+                            <div class="col-sm-10">
+                                <textarea id="diet" name="diet" class="form-control" placeholder="dieetwens, andere dieetwens"></textarea>
+                            </div>
+                        </div>
                     </form>
                     <div>
                         <button class="btn btn-success float-right" form="reservate">Reserveer</button>
