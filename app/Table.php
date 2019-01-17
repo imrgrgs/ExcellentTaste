@@ -10,4 +10,9 @@ class Table extends Model
     {
         return $this->morphMany('App\Exclusion', 'excluded');
     }
+
+    public function reservations()
+    {
+        return $this->belongsToMany(Reservation::class, 'reservation_tables')->withPivot('start', 'end');
+    }
 }

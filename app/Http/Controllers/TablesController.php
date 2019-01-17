@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exclusion;
+use App\Reservation;
 use App\Table;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -32,6 +33,12 @@ class TablesController extends Controller
             $q->whereBetween('start', [$start, $end])->orWhereBetween('end',[$start, $end]);
         })->orWhereHas('excluded', function ($q) use ($start, $end) {
             $q->where('start', '<', $start)->where('end', '>', $end);
+        })->when(request()->has('withReservations'), function ($q) use ($start, $end) {
+            $q->whereHas('reservations', function ($q) use ($start, $end) {
+                $q->whereBetween('start', [$start, $end])->orWhereBetween('end',[$start, $end]);
+            })->orWhereHas('reservations', function ($q) use ($start, $end) {
+                $q->where('start', '<', $start)->where('end', '>', $end);
+            });
         })->get();
 
         return $tables->pluck('id');
@@ -54,20 +61,20 @@ class TablesController extends Controller
             }
             return [$item => 'off'];
         });
+        $start = Carbon::parse(request()->get('start_date') . ' ' . request()->get('start_time'));
+        $end = Carbon::parse(request()->get('end_date') . ' ' . request()->get('end_time'));
 
         foreach ($excluded_tables as $id => $status) {
             $table = Table::find($id);
-            $start = Carbon::parse(request()->get('start_date') . ' ' . request()->get('start_time'));
-            $end = Carbon::parse(request()->get('end_date') . ' ' . request()->get('end_time'));
 
             Exclusion::where('excluded_type', 'App\Table')->where('excluded_id', $id)->where(function ($q) use ($start, $end){
                 $q->whereBetween('start', [$start, $end])->orWhereBetween('end', [$start, $end]);
-            })->delete();
+            })->get();
 
             if ($status === 'on') {
                 $table->excluded()->create([
-                    'start' => Carbon::parse(request()->get('start_date') . ' ' . request()->get('start_time')),
-                    'end' => Carbon::parse(request()->get('end_date') . ' ' . request()->get('end_time')),
+                    'start' => $start,
+                    'end' => $end,
                 ]);
             }
         }
