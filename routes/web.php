@@ -20,11 +20,16 @@ Auth::routes(['verify' => true]);
 Route::group(['middleware' => 'verified'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('reservations/create', 'ReservationController@create');
-    Route::post('reservations/create', 'ReservationController@save');
+    Route::get('reservations/create', 'ReservationsController@create');
+    Route::post('reservations/create', 'ReservationsController@save');
 
+    Route::get('tables/excluded', 'TablesController@excludes');
     // administrator routes
     Route::group(['middleware' => 'role:administrator'], function () {
 
+        Route::group(['prefix' => 'tables'], function ($get) {
+            $get->get('exclude', 'TablesController@index');
+            $get->post('exclude', 'TablesController@save');
+        });
     });
 });
