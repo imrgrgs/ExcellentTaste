@@ -43,8 +43,10 @@
                     <div class="col-sm-9">
                         <label type="text" name="number" class="form-control-plaintext" readonly id="seat" >{{$user->number}}</label>
                     </div>
-                    <button type="button" data-edit="false" class="btn btn-secondary" id="editform">Wijzigen</button>
-                    <button type="submit" class="btn btn-success" id="submit">Opslaan</button>
+                    <div class="col-md-3">
+                        <button type="button" data-edit="false" class="btn btn-secondary" id="editform">Wijzigen</button>
+                        <button type="submit" class="btn btn-success" id="submit">Opslaan</button>
+                    </div>
                 </div>
             </form>
 
@@ -52,15 +54,31 @@
                 @csrf
                 <label for="seat" class="col-sm-6 col-form-label">Nieuw wachtwoord</label>
                 <div class="col-sm-6">
-                    <input type="text" name="password" required class="form-control" >
+                    <input type="password" name="password" required class="form-control" >
                 </div>
                 <label for="seat" class="col-sm-6 col-form-label">Bevestig wachtwoord</label>
                 <div class="col-sm-6">
-                    <input type="text" name="confirm_password" required class="form-control">
+                    <input type="password" name="password_confirmation" required class="form-control">
                 </div>
-                <button type="submit" class="btn btn-success">Opslaan</button>
-            </form>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-success">Opslaan</button>
+                </div>
+                <div class="col-md-6">
+                    <p id="passwordHelpBlock" class="form-text text-muted">
+                        Uw wachtwoord moet minimaal 6 karakters bevatten
+                    </p>
+                </div>
 
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </form>
         </div>
     </div>
 

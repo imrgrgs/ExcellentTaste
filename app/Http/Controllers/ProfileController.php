@@ -49,15 +49,33 @@ class ProfileController extends Controller
         return redirect()->route('profile')->with('success','Profiel opgeslagen');
     }
 
+//    public function update(Request $request)
+//    {
+//        $user = auth()->user();
+//
+//        $user->password = bcrypt($request->get('password'));
+//
+//        $user->save();
+//
+//        return redirect()->route('profile');
+//    }
+
     public function update(Request $request)
     {
+        $this->validate($request,[
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
         $user = auth()->user();
 
-        $user->password = bcrypt($request->get('password'));
-
+        if(!empty($request->get('password')))
+        {
+            $user->password = bcrypt($request->get('password'));
+        }
         $user->save();
 
-        return redirect()->route('profile');
+//        $user->roles()->attach(Role::where('name', 'employee')->first());
 
+        return redirect()->route('profile');
     }
 }
