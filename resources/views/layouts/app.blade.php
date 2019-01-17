@@ -59,7 +59,7 @@
                                         </a>
                                     </li>
                                     @role('administrator')
-                                    <li class="nav-item {{ request()->is('/tables/exclude') ? 'active' : '' }}">
+                                    <li class="nav-item {{ request()->is('tables/exclude') ? 'active' : '' }}">
                                         <a class="nav-link pl-0" href="{{ url('tables/exclude') }}"><i class="fas fa-ban"></i>
                                             <span class="d-none d-md-inline">Tafels uitsluiten</span>
                                         </a>

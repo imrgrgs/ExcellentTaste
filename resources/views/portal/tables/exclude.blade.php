@@ -5,10 +5,8 @@
         <form method="post" action="{{ url('/tables/exclude') }}" class="row">
             @csrf
             <div class="card w-100">
-                <div class="card-header">
-                    <button type="submit" class="btn btn-success float-right">Opslaan</button>
-                </div>
                 <div class="card-body">
+                    <h3 class="card-title">Maak een reservering</h3>
                     <div class="form-group row">
                         <label for="date" class="col-sm-2 col-form-label">Start</label>
                         <div class="col-sm-10 form-row">
@@ -37,6 +35,7 @@
                             <span class="col-md-5">{{ \Carbon\Carbon::parse($exclude->end)->format('d M Y | H:m') }}</span>
                         </div>
                     @endforeach
+                    <div><button type="submit" class="btn btn-success float-right">Opslaan</button></div>
                 </div>
             </div>
             @foreach($groups as $key => $group)
