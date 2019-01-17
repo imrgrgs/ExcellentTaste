@@ -1,6 +1,6 @@
 $('.time').focusout(function (e) {
     let time = $(this).val().split(':');
-    if (time[0] > 23 || time[0] < 10 || time[1] > 61 || !$(this).val().includes(':')) {
+    if (time[0] > 23 || time[0] < 10 || time[1] > 61 || !$(this).val().includes(':') || $(this).val().length > 5) {
         $(this).val($(this).attr('data-default'));
     }
 });

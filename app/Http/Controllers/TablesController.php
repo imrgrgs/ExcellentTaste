@@ -23,25 +23,28 @@ class TablesController extends Controller
     public function excludes()
     {
         $start = Carbon::parse(request()->get('start_date') . ' ' . request()->get('start_time'));
-        $end = Carbon::parse(request()->get('end_date') . ' ' . request()->get('end_time'));
-
-        if (!request()->has('end_date')) {
-            $end = $start->addHours(2);
+        if (\request()->has('end_date')) {
+            $end = Carbon::parse(request()->get('end_date') . ' ' . request()->get('end_time'));
+        } else {
+            $end = Carbon::parse(request()->get('start_date') . ' ' . request()->get('start_time'))->addHours(2);
         }
 
         $tables = Table::whereHas('excluded', function ($q) use ($start, $end) {
             $q->whereBetween('start', [$start, $end])->orWhereBetween('end',[$start, $end]);
         })->orWhereHas('excluded', function ($q) use ($start, $end) {
             $q->where('start', '<', $start)->where('end', '>', $end);
-        })->when(request()->has('withReservations'), function ($q) use ($start, $end) {
-            $q->whereHas('reservations', function ($q) use ($start, $end) {
+        })->pluck('id');
+
+        if (request()->has('withReservations')) {
+            $tables->push(Table::whereHas('reservations', function ($q) use ($start, $end) {
                 $q->whereBetween('start', [$start, $end])->orWhereBetween('end',[$start, $end]);
             })->orWhereHas('reservations', function ($q) use ($start, $end) {
                 $q->where('start', '<', $start)->where('end', '>', $end);
-            });
-        })->get();
+            })->pluck('id'));
+            $tables = $tables->flatten();
+        }
 
-        return $tables->pluck('id');
+        return $tables;
     }
 
     public function save(Request $request)
@@ -61,17 +64,35 @@ class TablesController extends Controller
             }
             return [$item => 'off'];
         });
-        $start = Carbon::parse(request()->get('start_date') . ' ' . request()->get('start_time'));
-        $end = Carbon::parse(request()->get('end_date') . ' ' . request()->get('end_time'));
+        $start = Carbon::parse(request()->get('start_date') . ' ' . request()->get('start_time'))->toDateTimeString();
+        $end = Carbon::parse(request()->get('end_date') . ' ' . request()->get('end_time'))->toDateTimeString();
 
         foreach ($excluded_tables as $id => $status) {
             $table = Table::find($id);
 
-            Exclusion::where('excluded_type', 'App\Table')->where('excluded_id', $id)->where(function ($q) use ($start, $end){
-                $q->whereBetween('start', [$start, $end])->orWhereBetween('end', [$start, $end]);
-            })->get();
+            // shift all the blockades of the table that end within the new period to the start of the new period
+            $table->excluded()->where(function ($q) use ($start, $end){
+                $q->whereBetween('end', [$start, $end]);
+            })->get()->each(function ($q) use ($start) {
+                $q->start = $q->start;
+                $q->end = $start;
+                $q->save();
+            });
+
+            // shift all the blockades of the table that start within the new period to the end of the new period
+            $table->excluded()->where(function ($q) use ($start, $end){
+                $q->whereBetween('start', [$start, $end]);
+            })->update([
+                'start' => $end
+            ]);
 
             if ($status === 'on') {
+
+                $table->excluded()->where(function ($q) use ($start, $end){
+                    $q->where('start', '<', $start)->where('end', '>', $end);
+                })->delete();
+
+                // delete all the blockades of the table that start and end within the new period
                 $table->excluded()->create([
                     'start' => $start,
                     'end' => $end,
