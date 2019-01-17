@@ -72,6 +72,7 @@ class RegisterController extends Controller
     {
         return User::create([
             'number' => rand(10000, 99999),
+            'active' => true,
             'first_name' => $data['first_name'],
             'middle_name' => $data['middle_name'],
             'last_name' => $data['last_name'],

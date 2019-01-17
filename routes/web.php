@@ -34,6 +34,8 @@ Route::group(['middleware' => 'verified'], function () {
             Route::post('/delete', 'UsersController@destroy');
             Route::get('/{user}/edit', 'UsersController@edit');
             Route::post('/{user}/update', 'UsersController@update');
+            Route::post('/{user}/block', 'UsersController@block');
+            Route::post('/{user}/activate', 'UsersController@activate');
         });
     });
 });

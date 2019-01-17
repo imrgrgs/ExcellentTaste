@@ -85,4 +85,22 @@ class UsersController extends Controller
     {
         //
     }
+
+    public function block($id)
+    {
+        $user = User::find($id);
+        $user->active = false;
+        $user->save();
+
+        return redirect('/users/' . $id . '/edit');
+    }
+
+    public function activate($id)
+    {
+        $user = User::find($id);
+        $user->active = true;
+        $user->save();
+
+        return redirect('/users/' . $id . '/edit');
+    }
 }
