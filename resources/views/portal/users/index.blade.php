@@ -32,6 +32,11 @@
                         			<td>{{$user->middle_name}} {{$user->last_name}}</td>
                         			<td>{{$user->city}}</td>
                         			<td>{{$user->phone}}</td>
+                                    <td>
+                                        <button type="submit" name="btn" class="btn btn-danger" value="{{ $user->id }}">
+                                            <i class="la la-close"></i>Delete
+                                        </button>
+                                    </td>
                         		</tr>
                         	@endforeach
                         </tbody>

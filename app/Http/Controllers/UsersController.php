@@ -83,6 +83,7 @@ class UsersController extends Controller
         $user->phone = $request->inputPhone;
 
         $user->save();
+        Session::flash('success', 'Email was sent');
         return redirect('/users');
     }
 

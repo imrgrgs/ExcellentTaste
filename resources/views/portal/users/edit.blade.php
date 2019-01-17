@@ -78,7 +78,7 @@
                         	{{ csrf_field() }}
                         	<div class="form-group row">
                         		<div class="col-sm-12">
-                        			<button type="submit" class="btn btn-danger">blokkeer</button>
+                        			<button type="submit" class="btn btn-danger">Blokkeer</button>
                         		</div>
                         	</div>
                         </form>
@@ -87,7 +87,7 @@
                             {{ csrf_field() }}
                             <div class="form-group row">
                                 <div class="col-sm-12">
-                                    <button type="submit" class="btn btn-danger">blokkeer</button>
+                                    <button type="submit" class="btn btn-success">Activeer</button>
                                 </div>
                             </div>
                         </form>
