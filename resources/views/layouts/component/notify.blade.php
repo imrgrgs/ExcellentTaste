@@ -5,8 +5,11 @@
                 title: 'Success',
                 text: `{{session()->get('success')}}`,
                 type: 'success',
-                hide: true,
-
+                animate: {
+                    animate: true,
+                    in_class: 'bounceInLeft',
+                    out_class: 'bounceOutRight'
+                }
             });
         });
     </script>

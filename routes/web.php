@@ -21,6 +21,7 @@ Route::group(['middleware' => 'verified'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/profile', 'ProfileController@index')->name('profile');
     Route::post('/profile', 'ProfileController@store');
+    Route::post('/profile/password', 'ProfileController@update');
 
     Route::get('reservations/create', 'ReservationController@create');
     Route::post('reservations/create', 'ReservationController@save');

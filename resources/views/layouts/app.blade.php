@@ -30,7 +30,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.0/css/bootstrap-slider.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css" rel="stylesheet" type="text/css">
     <link href="css/pnotify.custom.min.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.css" media="all" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+
 
 
     <link rel="stylesheet" type="text/css" href="style.css">
