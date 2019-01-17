@@ -73,20 +73,25 @@
                             </div>
                         </div>	
                     </form>
-                    <form method="POST" action="/users/{{ $user->id }}/block" enctype="multipart/form-data">
-                    	{{ csrf_field() }}
-                    	<div class="form-group row">
-                            @if($user->active)
+                    @if($user->active)
+                        <form method="POST" action="/users/{{ $user->id }}/block" enctype="multipart/form-data">
+                        	{{ csrf_field() }}
+                        	<div class="form-group row">
                         		<div class="col-sm-12">
                         			<button type="submit" class="btn btn-danger">blokkeer</button>
                         		</div>
-                            @else
+                        	</div>
+                        </form>
+                    @else
+                        <form method="POST" action="/users/{{ $user->id }}/activate" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <div class="form-group row">
                                 <div class="col-sm-12">
-                                    <button type="submit" class="btn btn-danger">Activeer</button>
+                                    <button type="submit" class="btn btn-danger">blokkeer</button>
                                 </div>
-                            @endif
-                    	</div>
-                    </form>
+                            </div>
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>
