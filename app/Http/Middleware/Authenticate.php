@@ -9,7 +9,7 @@ class Authenticate extends Middleware
 {
     public function handle($request, Closure $next, ...$guards)
     {
-        if (!Auth()->user()->active)
+        if (Auth()->user() && !Auth()->user()->active)
         {
             Auth()->logout();
         }
