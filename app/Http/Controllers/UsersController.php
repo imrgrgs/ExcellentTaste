@@ -72,7 +72,18 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->first_name = $request->inputFirstName;
+        $user->middle_name = $request->inputMiddleName;
+        $user->last_name = $request->inputLastName;
+        $user->email = $request->inputEmail;
+        $user->address = $request->inputAddress;
+        $user->postal = $request->inputPostal;
+        $user->city = $request->inputCity;
+        $user->phone = $request->inputPhone;
+
+        $user->save();
+        return redirect('/users');
     }
 
     /**

@@ -12,58 +12,58 @@
                         {{ csrf_field() }}
 
                         <div class="form-group row">
-                            <label for="inputName" class="col-sm-2 col-form-label">Naam</label>
+                            <label for="inputFirstName" class="col-sm-2 col-form-label">Naam</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputName" name="name" value="{{ $user->first_name }}">
+                                <input type="text" class="form-control" id="inputFirstName" name="inputFirstName" value="{{ $user->first_name }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="inputName" class="col-sm-2 col-form-label">Tussenvoegsel</label>
+                            <label for="inputMiddleName" class="col-sm-2 col-form-label">Tussenvoegsel</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputName" name="name" value="{{ $user->middle_name }}">
+                                <input type="text" class="form-control" id="inputMiddleName" name="inputMiddleName" value="{{ $user->middle_name }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="inputName" class="col-sm-2 col-form-label">Achternaam</label>
+                            <label for="inputLastName" class="col-sm-2 col-form-label">Achternaam</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputName" name="name" value="{{ $user->last_name }}">
+                                <input type="text" class="form-control" id="inputLastName" name="inputLastName" value="{{ $user->last_name }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="inputName" class="col-sm-2 col-form-label">Email</label>
+                            <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputName" name="email" value="{{ $user->email }}">
+                                <input type="text" class="form-control" id="inputEmail" name="inputEmail" value="{{ $user->email }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="inputName" class="col-sm-2 col-form-label">Address</label>
+                            <label for="inputAddress" class="col-sm-2 col-form-label">Address</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputName" name="name" value="{{ $user->address }}">
+                                <input type="text" class="form-control" id="inputAddress" name="inputAddress" value="{{ $user->address }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="inputName" class="col-sm-2 col-form-label">Postcode</label>
+                            <label for="inputPostal" class="col-sm-2 col-form-label">Postcode</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputName" name="name" value="{{ $user->postal }}">
+                                <input type="text" class="form-control" id="inputPostal" name="inputPostal" value="{{ $user->postal }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="inputName" class="col-sm-2 col-form-label">Plaats</label>
+                            <label for="inputCity" class="col-sm-2 col-form-label">Plaats</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputName" name="name" value="{{ $user->city }}">
+                                <input type="text" class="form-control" id="inputCity" name="inputCity" value="{{ $user->city }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="inputName" class="col-sm-2 col-form-label">Telefoon</label>
+                            <label for="inputPhone" class="col-sm-2 col-form-label">Telefoon</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputName" name="name" value="{{ $user->phone }}">
+                                <input type="text" class="form-control" id="inputPhone" name="inputPhone" value="{{ $user->phone }}">
                             </div>
                         </div>
 
@@ -76,9 +76,15 @@
                     <form method="POST" action="/users/{{ $user->id }}/block" enctype="multipart/form-data">
                     	{{ csrf_field() }}
                     	<div class="form-group row">
-                    		<div class="col-sm-12">
-                    			<button type="submit" class="btn btn-danger">blokkeer</button>
-                    		</div>
+                            @if($user->active)
+                        		<div class="col-sm-12">
+                        			<button type="submit" class="btn btn-danger">blokkeer</button>
+                        		</div>
+                            @else
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-danger">Activeer</button>
+                                </div>
+                            @endif
                     	</div>
                     </form>
                 </div>
