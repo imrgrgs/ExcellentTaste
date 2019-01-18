@@ -23,3 +23,7 @@
 .invalid-feedback{
 	display: block !important;
 }
+
+.featurette-divider{
+	background-color: #fff;
+}
