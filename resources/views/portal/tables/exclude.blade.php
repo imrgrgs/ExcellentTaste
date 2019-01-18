@@ -29,7 +29,7 @@
                 </div>
             </div>
             @foreach($groups as $key => $group)
-                <div class="col-lg-6 mt-3 justify-content-center">
+                <div class="col-lg-4 mt-3 justify-content-center">
                     <div class="card h-100">
                         <div class="card-header">
                             Tafel van {{ $key }}
@@ -37,8 +37,8 @@
                         <div class="card-body">
                             @foreach($group as $table)
                                 <div class="row">
-                                    <label for="{{ $table->id }}" class="col-sm-2 col-form-label">{{ $table->id }}</label>
-                                    <div class="col-sm-2 text-center" id="{{ $table->id }}">
+                                    <label for="{{ $table->id }}" class="col-sm-4 col-form-label">{{ $table->id }}</label>
+                                    <div class="col-sm-6 text-center" id="{{ $table->id }}">
                                         <input type="checkbox" name="{{ $table->id }}" class="switcheroo"/>
                                     </div>
                                     <div class="col-sm-8">
