@@ -27,7 +27,8 @@ class ReservationsController extends Controller
         $request->validate([
             'date' => 'required',
             'tables' => 'required|max:2',
-            'seat' => 'required|digits_between:0,8'
+            'seat' => 'required|digits_between:0,8',
+            'start_time' => ['required', new HoursBetween]
         ]);
 
         $user = $request->exists('customer_id') ? User::find($request->get('customer_id')) : auth()->user();
@@ -49,6 +50,6 @@ class ReservationsController extends Controller
             'number' => Carbon::parse($date)->format('Ymd'). implode($request->get('tables')),
         ])->tables()->sync($tables);
 
-        return redirect()->to('/home');
+        return redirect()->to('/profile')->with('success', 'Uw reservering is opgeslagen');
     }
 }

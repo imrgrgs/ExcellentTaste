@@ -33,7 +33,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
     </head>
-    <body id="app" class="bg-light">
+    <body id="app" class="bg-light  text-black-50">
         <div class="container-fluid">
             <div class="row">
                 <aside class="col-12 col-md-2 p-0 bg-dark fixed-top">

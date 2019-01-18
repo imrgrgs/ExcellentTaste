@@ -20,16 +20,17 @@ class HoursBetween implements Rule
     /**
      * Determine if the validation rule passes.
      *
-     * @param  string  $attribute
-     * @param  mixed  $value
+     * @param  string $attribute
+     * @param  mixed $value
      * @return bool
      */
     public function passes($attribute, $value)
     {
-        $diff = Carbon::now()->setTimeFromTimeString(request()->get('end_time'))->diffInHours(Carbon::now()->setTimeFromTimeString(request()->get('start_time')));
-        if ($diff <= 2) {
-            return $diff <= 2;
+        $time = explode(':', $value);
+        if ($time[0] === '21' && $time[1] === '00') {
+            return true;
         }
+        return $time[0] < 21;
     }
 
     /**

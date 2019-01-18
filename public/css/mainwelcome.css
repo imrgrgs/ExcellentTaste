@@ -25,3 +25,7 @@
 .navbar a:hover{
 	color: #fff !important;
 }
+
+.mt-10 {
+    margin-top: 6rem;
+}
