@@ -80,7 +80,7 @@
                                         <a class="nav-link pl-0" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
                                            document.getElementById('logout-form').submit();"><i class="fas fa-power-off"></i>
-                                            <span class="d-none d-md-inline">Logout</span>
+                                            <span class="d-none d-md-inline">Uitloggen</span>
                                         </a>
                                     </li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

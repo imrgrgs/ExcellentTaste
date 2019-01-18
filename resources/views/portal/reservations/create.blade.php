@@ -15,7 +15,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="" class="col-sm-2 col-form-label">Time</label>
+                            <label for="" class="col-sm-2 col-form-label">Tijd</label>
                             <div class="col-sm-10 form-row">
                                 <input class="form-control col-lg-4 time" type="text" name="start_time" id="start_time" value="10:00" data-default="10:00">
                                 <span class="col-lg-4 text-center">-</span>
@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="tables" class="col-sm-2 col-form-label">Tables</label>
+                            <label for="tables" class="col-sm-2 col-form-label">Tafels</label>
                             <div class="col-sm-10">
                                 <select class="select form-control" name="tables[]" id="tables" multiple="multiple">
                                     @foreach($table_groups as $key => $table_group)

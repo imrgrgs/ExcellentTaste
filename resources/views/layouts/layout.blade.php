@@ -40,8 +40,8 @@
                     <ul class="navbar-nav ml-auto">
 
                         @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                            <li><a class="nav-link" href="{{ route('login') }}">Inloggen</a></li>
+                            <li><a class="nav-link" href="{{ route('register') }}">Registreren</a></li>
                         @else
 
                             {{-- when logged in --}}
