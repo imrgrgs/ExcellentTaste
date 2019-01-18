@@ -71,6 +71,11 @@
                                         </a>
                                     </li>
                                     @role('administrator')
+                                        <li class="nav-item {{ request()->is('reservations/*') ? 'active' : '' }}">
+                                            <a class="nav-link pl-0" href="{{ url('users/') }}"><i class="fas fa-users"></i>
+                                                <span class="d-none d-md-inline">Gebruikers</span>
+                                            </a>
+                                        </li>
                                         <li class="nav-item {{ request()->is('tables/exclude') ? 'active' : '' }}">
                                             <a class="nav-link pl-0" href="{{ url('tables/exclude') }}"><i class="fas fa-ban"></i>
                                                 <span class="d-none d-md-inline">Tafels uitsluiten</span>
