@@ -15,6 +15,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script type="text/javascript" src="{{ url('js/pnotify.custom.min.js') }}"></script>
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
@@ -27,8 +28,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.0/css/bootstrap-slider.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/css/pnotify.custom.min.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.css" media="all" rel="stylesheet" type="text/css" />
-
 
     <link rel="stylesheet" type="text/css" href="/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">

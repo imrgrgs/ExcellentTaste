@@ -56,10 +56,11 @@
                                            id="seat">{{$user->number}}</label>
                                 </div>
                                 <div class="col-md-3">
-                                    <button type="button" data-edit="false" class="btn btn-secondary" id="editform">
-                                        Wijzigen
-                                    </button>
+                                    <button type="button" data-edit="false" class="btn btn-secondary" id="editform">Wijzigen</button>
                                     <button type="submit" class="btn btn-success" id="submit">Opslaan</button>
+                                </div>
+                                <div class="col-md-3">
+                                    <a href="/profile/delete" class="btn btn-danger" onclick="return confirm('Weet u zeker dat u uw account wilt verwijderen?');" id="">Verwijderen</a>
                                 </div>
                             </div>
                         </form>
