@@ -23,8 +23,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/profile', 'ProfileController@store');
     Route::post('/profile/password', 'ProfileController@update');
 
-    Route::get('reservations/create', 'ReservationController@create');
-    Route::post('reservations/create', 'ReservationController@save');
+    Route::get('reservations/create', 'ReservationsController@create');
+    Route::post('reservations/create', 'ReservationsController@save');
     Route::get('tables/excluded', 'TablesController@excludesJson');
 
 
