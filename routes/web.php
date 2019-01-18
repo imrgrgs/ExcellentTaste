@@ -22,7 +22,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/profile', 'ProfileController@index')->name('profile');
     Route::post('/profile', 'ProfileController@store');
     Route::post('/profile/password', 'ProfileController@update');
-    Route::get('/profile/delete', 'ProfileController@delete')->name('profile');
+    Route::get('/profile/delete', 'ProfileController@delete');
 
     Route::get('reservations/create', 'ReservationsController@create');
     Route::post('reservations/create', 'ReservationsController@save');
