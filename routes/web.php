@@ -21,9 +21,12 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/profile', 'ProfileController@index')->name('profile');
     Route::post('/profile', 'ProfileController@store');
+    Route::post('/profile/password', 'ProfileController@update');
 
     Route::get('reservations/create', 'ReservationController@create');
     Route::post('reservations/create', 'ReservationController@save');
+    Route::get('tables/excluded', 'TablesController@excludesJson');
+
 
     // administrator routes
     Route::group(['middleware' => ['auth', 'role:administrator']], function () {
@@ -36,6 +39,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::post('/{user}/update', 'UsersController@update');
             Route::post('/{user}/block', 'UsersController@block');
             Route::post('/{user}/activate', 'UsersController@activate');
+        });
+        Route::group(['prefix' => 'tables'], function ($get) {
+            $get->get('exclude', 'TablesController@index');
+            $get->post('exclude', 'TablesController@save');
+            $get->get('excluded-tables', 'TablesController@excluded');
         });
     });
 });

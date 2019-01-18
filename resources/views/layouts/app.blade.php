@@ -18,9 +18,6 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
     <!-- Styles -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
@@ -37,73 +34,73 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
 </head>
-<body>
-    <div class="container-fluid">
-    <div class="row">
-        <aside class="col-12 col-md-2 p-0 bg-dark fixed-top">
-            <nav class="navbar navbar-expand navbar-dark bg-dark flex-md-column flex-row align-items-start py-2">
-                <div class="collapse navbar-collapse align-items-start">
-                    <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
-                        <li class="nav-item" id="company-name">
-                            <a class="nav-link pl-0 text-nowrap" href="/"><i class="fa fa-bullseye fa-fw"></i>
-                              <span class="font-weight-bold">Excellent Taste</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link pl-0" href="/home"><i class="fas fa-home"></i>
-                             <span class="d-none d-md-inline">Home</span>
-                           </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link pl-0" href="#"><i class="fa fa-book fa-fw"></i>
-                              <span class="d-none d-md-inline">Menu</span>
-                            </a>
-                        </li>
-                        @role('administrator')
-                          <li class="nav-item">
-                              <a class="nav-link pl-0" href="/users"><i class="fas fa-users"></i>
-                                <span class="d-none d-md-inline">Gebruikers</span>
-                              </a>
-                          </li>
-                        @endrole
-                        @auth
-                          <li class="nav-item">
-                              <a class="nav-link pl-0" href="#"><i class="fas fa-ticket-alt"></i>
-                                <span class="d-none d-md-inline">Reserveren</span>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                              <a class="nav-link pl-0" href="#"><i class="fas fa-address-card"></i>
-                                <span class="d-none d-md-inline">Profiel</span>
-                              </a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link pl-0" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();"><i class="fas fa-power-off"></i>
-                                <span class="d-none d-md-inline">Logout</span>
-                            </a>
-                          </li>
-                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                          </form>
-                        @endauth
-                    </ul>
-                </div>
-            </nav>
-        </aside>
-        <main class="col offset-md-2 bg-faded py-2">
-
-            @yield('content')
-        </main>
-    </div>
-</div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.nl.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.0/bootstrap-slider.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-    <script src="{{ url('js/custom.js') }}"></script>
-    @yield('scripts')
-    @include('layouts.component.notify')
-</body>
+    <body id="app" class="bg-light">
+        <div class="container-fluid">
+            <div class="row">
+                <aside class="col-12 col-md-2 p-0 bg-dark fixed-top">
+                    <nav class="navbar navbar-expand navbar-dark bg-red flex-md-column border-right border-secondary flex-row align-items-start py-2">
+                        <div class="collapse navbar-collapse align-items-start">
+                            <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
+                                <li class="nav-item" id="company-name">
+                                    <a class="nav-link pl-0 text-nowrap" href="#">
+                                        <img src="{{ url('img/logo.png') }}" class="img-fluid w-25"><span class="font-weight-bold">Excellent Taste</span>
+                                    </a>
+                                </li>
+                                @role('administrator')
+                                    <li class="nav-item {{ request()->is('home') ? 'active' : '' }}">
+                                        <a class="nav-link pl-0" href="{{ url('/home') }}"><i class="fas fa-home"></i>
+                                            <span class="d-none d-md-inline">Home</span>
+                                        </a>
+                                    </li>
+                                @endrole
+                                <li class="nav-item {{ request()->is('profile') ? 'active' : '' }}">
+                                    <a class="nav-link pl-0" href="{{ url('/profile') }}"><i class="fas fa-address-card"></i>
+                                        <span class="d-none d-md-inline">Profiel</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link pl-0" href="#"><i class="fa fa-book fa-fw"></i>
+                                        <span class="d-none d-md-inline">Menu</span>
+                                    </a>
+                                </li>
+                                @auth
+                                    <li class="nav-item {{ request()->is('reservations/create') ? 'active' : '' }}">
+                                        <a class="nav-link pl-0" href="{{ url('reservations/create') }}"><i class="fas fa-ticket-alt"></i>
+                                            <span class="d-none d-md-inline">Reserveren</span>
+                                        </a>
+                                    </li>
+                                    @role('administrator')
+                                        <li class="nav-item {{ request()->is('tables/exclude') ? 'active' : '' }}">
+                                            <a class="nav-link pl-0" href="{{ url('tables/exclude') }}"><i class="fas fa-ban"></i>
+                                                <span class="d-none d-md-inline">Tafels uitsluiten</span>
+                                            </a>
+                                        </li>
+                                    @endrole
+                                    <li class="nav-item">
+                                        <a class="nav-link pl-0" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                           document.getElementById('logout-form').submit();"><i class="fas fa-power-off"></i>
+                                            <span class="d-none d-md-inline">Logout</span>
+                                        </a>
+                                    </li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                @endauth
+                            </ul>
+                        </div>
+                    </nav>
+                </aside>
+                <main class="col offset-md-2 py-2">
+                    @yield('content')
+                </main>
+            </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.nl.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.0/bootstrap-slider.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+        <script src="{{ url('js/switchery.js') }}"></script>
+        <script src="{{ url('js/custom.js') }}"></script>
+        @yield('scripts')
+        @include('layouts.components.notify')
+    </body>
 </html>

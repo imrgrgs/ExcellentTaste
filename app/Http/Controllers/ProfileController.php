@@ -32,7 +32,6 @@ class ProfileController extends Controller
 
     public function store(Request $request)
     {
-
         $user = auth()->user();
 
         $user->first_name = $request->get('first_name');
@@ -47,7 +46,35 @@ class ProfileController extends Controller
         $user->save();
 
         return redirect()->route('profile')->with('success','Profiel opgeslagen');
-
     }
 
+//    public function update(Request $request)
+//    {
+//        $user = auth()->user();
+//
+//        $user->password = bcrypt($request->get('password'));
+//
+//        $user->save();
+//
+//        return redirect()->route('profile');
+//    }
+
+    public function update(Request $request)
+    {
+        $this->validate($request,[
+            'g-recaptcha-response'=>'required|recaptcha',
+            'password' => 'required|string|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-_]).{8,}$/',
+
+        ]);
+        $user = auth()->user();
+        if(!empty($request->get('password')))
+        {
+            $user->password = bcrypt($request->get('password'));
+        }
+        $user->save();
+
+//        $user->roles()->attach(Role::where('name', 'employee')->first());
+
+        return redirect()->route('profile')->with('success','Uw wachtwoord is opgeslagen');;
+    }
 }
