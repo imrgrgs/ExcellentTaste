@@ -42,6 +42,7 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $this->validate($request,[
+            'g-recaptcha-response'=>'required|recaptcha',
             'password' => 'required|string|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-_]).{8,}$/',
 
         ]);
