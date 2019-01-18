@@ -14,3 +14,20 @@
         });
     </script>
 @endif
+
+@if(session()->has('errors'))
+    <script>
+        $(document).ready(function () {
+            new PNotify({
+                title: 'Oops',
+                text: 'Er is iets fout gegaan',
+                type: 'error',
+                animate: {
+                    animate: true,
+                    in_class: 'bounceInLeft',
+                    out_class: 'bounceOutRight'
+                }
+            });
+        });
+    </script>
+@endif
