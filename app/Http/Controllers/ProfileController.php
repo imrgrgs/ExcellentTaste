@@ -62,18 +62,6 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $this->validate($request,[
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-
-        $user = auth()->user();
-
-        $user->save();
-        return redirect()->route('profile')->with('success','Profiel opgeslagen');
-    }
-
-    public function update(Request $request)
-    {
-        $this->validate($request,[
             'password' => 'required|string|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-_]).{8,}$/',
 
         ]);
