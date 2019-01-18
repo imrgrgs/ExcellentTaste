@@ -48,17 +48,6 @@ class ProfileController extends Controller
         return redirect()->route('profile')->with('success','Profiel opgeslagen');
     }
 
-//    public function update(Request $request)
-//    {
-//        $user = auth()->user();
-//
-//        $user->password = bcrypt($request->get('password'));
-//
-//        $user->save();
-//
-//        return redirect()->route('profile');
-//    }
-
     public function update(Request $request)
     {
         $this->validate($request,[
@@ -73,8 +62,29 @@ class ProfileController extends Controller
         }
         $user->save();
 
-//        $user->roles()->attach(Role::where('name', 'employee')->first());
 
         return redirect()->route('profile')->with('success','Uw wachtwoord is opgeslagen');;
+    }
+
+    public function delete()
+    {
+
+        $user = auth()->user();
+
+        $user->first_name = NULL;
+        $user->middle_name = NULL;
+        $user->last_name = NULL;
+        $user->email = NULL;
+        $user->address = NULL;
+        $user->postal = NULL;
+        $user->city = NULL;
+        $user->phone = NULL;
+        $user->password = NULL;
+
+        $user->save();
+        $user->delete();
+        // Session::flash('success', 'Gebruiker verwijderd');
+        return redirect()->route('home')->with('success','Gebruiker verwijderd');;
+
     }
 }
