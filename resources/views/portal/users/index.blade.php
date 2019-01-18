@@ -8,7 +8,7 @@
             <div class="card-header px-4">Gebruikers <span><a href="/users/create"><i class="la la-plus-circle la-2x pull-right"></i></a></span></div>
 
             <div class="card-body">
-                <form method="POST" onsubmit="ConfirmDelete()" action="/user/delete" enctype="multipart/form-data">
+                <form method="POST" onsubmit="ConfirmDelete()" action="/users/delete/" enctype="multipart/form-data">
                     {{ csrf_field('DELETE') }}
                     <table class="table table-striped table-hover">
                         <thead>
@@ -23,21 +23,25 @@
                         </thead>
                         <tbody>
                         	@foreach($users as $user)
-                        		<tr>
-                        			<td>
-                        				<a href="/users/{{ $user->id }}/edit">{{$user->id}}</a>
-                        			</td>
-                        			<td>{{$user->number}}</td>
-                        			<td>{{$user->first_name}}</td>
-                        			<td>{{$user->middle_name}} {{$user->last_name}}</td>
-                        			<td>{{$user->city}}</td>
-                        			<td>{{$user->phone}}</td>
-                                    <td>
-                                        <button type="submit" name="btn" class="btn btn-danger" value="{{ $user->id }}">
-                                            <i class="la la-close"></i>Delete
-                                        </button>
-                                    </td>
-                        		</tr>
+                                {{-- @if(empty($user->delete()ted_at)) --}}
+                            		<tr>
+                            			<td>
+                            				<a href="/users/{{ $user->id }}/edit">{{$user->id}}</a>
+                            			</td>
+                            			<td>{{$user->number}}</td>
+                            			<td>{{$user->first_name}}</td>
+                            			<td>{{$user->middle_name}} {{$user->last_name}}</td>
+                            			<td>{{$user->city}}</td>
+                            			<td>{{$user->phone}}</td>
+                                        <td>
+                                            <button type="submit" name="id" class="btn btn-danger" value="{{ $user->id }}">
+                                                <i class="la la-close"></i>Delete
+                                            </button>
+                                        </td>
+                            		</tr>
+                               {{--  @else
+
+                                @endif --}}
                         	@endforeach
                         </tbody>
                     </table>

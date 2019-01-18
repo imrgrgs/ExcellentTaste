@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -83,8 +84,8 @@ class UsersController extends Controller
         $user->phone = $request->inputPhone;
 
         $user->save();
-        Session::flash('success', 'Email was sent');
-        return redirect('/users');
+        // Session::flash('success', 'Gebruiker geupdate');
+        return redirect('/users/' . $id . '/edit')->with('success','Gebruiker geupdate');
     }
 
     /**
@@ -93,9 +94,25 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function softdelete()
     {
-        //
+
+        $user = User::findOrFail(request()->id);
+
+        $user->first_name = NULL;
+        $user->middle_name = NULL;
+        $user->last_name = NULL;
+        $user->email = NULL;
+        $user->address = NULL;
+        $user->postal = NULL;
+        $user->city = NULL;
+        $user->phone = NULL;
+
+        $user->save();
+        $user->delete();
+        // Session::flash('success', 'Gebruiker verwijderd');
+        return redirect('/users');
+
     }
 
     public function block($id)
