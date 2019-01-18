@@ -6,7 +6,7 @@
             @csrf
             <div class="card w-100">
                 <div class="card-body">
-                    <h3 class="card-title">Maak een reservering</h3>
+                    <h3 class="card-title">Sluit tafels uit</h3>
                     <div class="form-group row">
                         <label for="date" class="col-sm-2 col-form-label">Start</label>
                         <div class="col-sm-10 form-row">
@@ -22,20 +22,10 @@
                         </div>
                     </div>
                     <hr>
-
-                    <div class="row">
-                        <span class="col-md-2">Tafel</span>
-                        <span class="col-md-5">Start</span>
-                        <span class="col-md-5">Eind</span>
+                    <div>
+                        <a href="{{ url('tables/excluded-tables') }}" id="excludes-table" data-options="" data-toggle="modal" class="btn btn-secondary">Tabel</a>
+                        <button type="submit" class="btn btn-success float-right">Opslaan</button>
                     </div>
-                    @foreach($excludes as $exclude)
-                        <div class="row">
-                            <span class="col-md-2">{{ $exclude->excluded->id }}</span>
-                            <span class="col-md-5">{{ \Carbon\Carbon::parse($exclude->start)->format('d M Y | H:m') }}</span>
-                            <span class="col-md-5">{{ \Carbon\Carbon::parse($exclude->end)->format('d M Y | H:m') }}</span>
-                        </div>
-                    @endforeach
-                    <div><button type="submit" class="btn btn-success float-right">Opslaan</button></div>
                 </div>
             </div>
             @foreach($groups as $key => $group)
@@ -48,8 +38,11 @@
                             @foreach($group as $table)
                                 <div class="row">
                                     <label for="{{ $table->id }}" class="col-sm-2 col-form-label">{{ $table->id }}</label>
-                                    <div class="col-sm-10 text-center" id="{{ $table->id }}">
+                                    <div class="col-sm-2 text-center" id="{{ $table->id }}">
                                         <input type="checkbox" name="{{ $table->id }}" class="switcheroo"/>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <span id="times"></span>
                                     </div>
                                 </div>
                             @endforeach
@@ -64,19 +57,13 @@
 @section('scripts')
     <script>
         $('#end_time,#start_time,#start_date,#end_date').on('change', function () {
-            $.get('/tables/excluded', {
-                start_date: $('#start_date').val(),
-                start_time: $('#start_time').val(),
-                end_date: $('#end_date').val(),
-                end_time: $('#end_time').val()
-            }).then(function (res) {
-                $('input:checkbox').prop('checked', false);
-                $.each(res, function (id) {
-                    $('#'+res[id]+' > input').prop('checked', true);
-                });
-                $('.switchery').remove();
-                resetSwitches();
-            })
+            getSwitchedTables();
         });
+        $('#start_date, #end_date').on('change', function () {
+            console.log('test');
+            $('#excludes-table').attr('data-options','start='+ $('#start_date').val() +'&end='+ $('#end_date').val())
+        });
+        getSwitchedTables();
+        $('#excludes-table').attr('data-options','start='+ $('#start_date').val() +'&end='+ $('#end_date').val())
     </script>
 @endsection

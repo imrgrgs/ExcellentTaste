@@ -93,11 +93,12 @@
         $('#start_time,#date').on('change', function () {
             $.get('/tables/excluded', {
                 start_date: $('#date').val(),
-                start_time: $('#start_time').val()
+                start_time: $('#start_time').val(),
+                withReservations: true
             }).then(function (res) {
                 $('#tables option').prop('disabled', false);
                 $.each(res, function (id) {
-                    $('option[value=' + res[id] + ']').prop('disabled', true);
+                    $('#tables optgroup option[value=' + res[id] + ']').prop('disabled', true);
                 });
             })
         });
