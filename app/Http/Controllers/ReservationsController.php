@@ -24,12 +24,15 @@ class ReservationsController extends Controller
 
     public function save(Request $request)
     {
-        $request->validate([
+        $rules = [
             'date' => 'required',
             'tables' => 'required|max:2',
-            'seat' => 'required|digits_between:0,8',
             'start_time' => ['required', new HoursBetween]
-        ]);
+        ];
+        if (!auth()->user()->hasRole('administrator')) {
+            $rules['seat'] = 'required|digits_between:0,8';
+        }
+        $request->validate($rules);
 
         $user = $request->exists('customer_id') ? User::find($request->get('customer_id')) : auth()->user();
 
