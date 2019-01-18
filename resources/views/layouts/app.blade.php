@@ -33,21 +33,28 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
     </head>
-    <body class=" bg-light">
+    <body id="app" class="bg-light">
         <div class="container-fluid">
             <div class="row">
                 <aside class="col-12 col-md-2 p-0 bg-dark fixed-top">
-                    <nav class="navbar navbar-expand navbar-dark bg-dark flex-md-column flex-row align-items-start py-2">
+                    <nav class="navbar navbar-expand navbar-dark bg-red flex-md-column border-right border-secondary flex-row align-items-start py-2">
                         <div class="collapse navbar-collapse align-items-start">
                             <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
                                 <li class="nav-item" id="company-name">
-                                    <a class="nav-link pl-0 text-nowrap" href="#"><i class="fa fa-bullseye fa-fw"></i>
-                                        <span class="font-weight-bold">Excellent Taste</span>
+                                    <a class="nav-link pl-0 text-nowrap" href="#">
+                                        <img src="{{ url('img/logo.png') }}" class="img-fluid w-25"><span class="font-weight-bold">Excellent Taste</span>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link pl-0" href="#"><i class="fas fa-home"></i>
-                                        <span class="d-none d-md-inline">Home</span>
+                                @role('administrator')
+                                    <li class="nav-item {{ request()->is('home') ? 'active' : '' }}">
+                                        <a class="nav-link pl-0" href="{{ url('/home') }}"><i class="fas fa-home"></i>
+                                            <span class="d-none d-md-inline">Home</span>
+                                        </a>
+                                    </li>
+                                @endrole
+                                <li class="nav-item {{ request()->is('profile') ? 'active' : '' }}">
+                                    <a class="nav-link pl-0" href="{{ url('/profile') }}"><i class="fas fa-address-card"></i>
+                                        <span class="d-none d-md-inline">Profiel</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -62,17 +69,12 @@
                                         </a>
                                     </li>
                                     @role('administrator')
-                                    <li class="nav-item {{ request()->is('tables/exclude') ? 'active' : '' }}">
-                                        <a class="nav-link pl-0" href="{{ url('tables/exclude') }}"><i class="fas fa-ban"></i>
-                                            <span class="d-none d-md-inline">Tafels uitsluiten</span>
-                                        </a>
-                                    </li>
+                                        <li class="nav-item {{ request()->is('tables/exclude') ? 'active' : '' }}">
+                                            <a class="nav-link pl-0" href="{{ url('tables/exclude') }}"><i class="fas fa-ban"></i>
+                                                <span class="d-none d-md-inline">Tafels uitsluiten</span>
+                                            </a>
+                                        </li>
                                     @endrole
-                                    <li class="nav-item">
-                                        <a class="nav-link pl-0" href="#"><i class="fas fa-address-card"></i>
-                                            <span class="d-none d-md-inline">Profiel</span>
-                                        </a>
-                                    </li>
                                     <li class="nav-item">
                                         <a class="nav-link pl-0" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
@@ -92,7 +94,6 @@
                     @yield('content')
                 </main>
             </div>
-        </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.nl.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.0/bootstrap-slider.js"></script>
