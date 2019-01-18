@@ -26,13 +26,14 @@ Route::group(['middleware' => 'verified'], function () {
     Route::get('reservations/create', 'ReservationsController@create');
     Route::post('reservations/create', 'ReservationsController@save');
 
-    Route::get('tables/excluded', 'TablesController@excludes');
+    Route::get('tables/excluded', 'TablesController@excludesJson');
     // administrator routes
     Route::group(['middleware' => 'role:administrator'], function () {
 
         Route::group(['prefix' => 'tables'], function ($get) {
             $get->get('exclude', 'TablesController@index');
             $get->post('exclude', 'TablesController@save');
+            $get->get('excluded-tables', 'TablesController@excluded');
         });
     });
 });

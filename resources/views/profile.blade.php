@@ -1,4 +1,3 @@
-
 @extends ('layouts.app')
 
 @section ('content')
@@ -41,7 +40,7 @@
                     </div>
                     <label for="seat" class="col-sm-3 col-form-label">Klantnr.</label>
                     <div class="col-sm-9">
-                        <label type="text" name="number" class="form-control-plaintext" readonly id="seat" >{{$user->number}}</label>
+                        <label type="text" name="number" class="form-control-plaintext" readonly id="seat">{{$user->number}}</label>
                     </div>
                     <div class="col-md-3">
                         <button type="button" data-edit="false" class="btn btn-secondary" id="editform">Wijzigen</button>
@@ -54,7 +53,7 @@
                 @csrf
                 <label for="seat" class="col-sm-6 col-form-label">Nieuw wachtwoord</label>
                 <div class="col-sm-6">
-                    <input type="password" name="password" required class="form-control" >
+                    <input type="password" name="password" required class="form-control">
                 </div>
                 <label for="seat" class="col-sm-6 col-form-label">Bevestig wachtwoord</label>
                 <div class="col-sm-6">
@@ -81,25 +80,24 @@
             </form>
         </div>
     </div>
-
+    @stop
+@section('scripts')
     <script type="text/javascript">
         $('#submit').hide()
-        $( "#editform" ).click(function() {
-            if ($(this).attr('data-edit')==='false' )
-            {
-                $( 'input' ).removeClass( "form-control-plaintext" ).prop('readonly', false).addClass('form-control');
-                $(this).attr('data-edit','true');
+        $("#editform").click(function () {
+            if ($(this).attr('data-edit') === 'false') {
+                $('input').removeClass("form-control-plaintext").prop('readonly', false).addClass('form-control');
+                $(this).attr('data-edit', 'true');
                 $('#submit').toggle()
                 $('#editform').toggle()
             }
         });
-            $( "#submit" ).click(function(){
-            {
-                $( 'input' ).addClass( "form-control-plaintext" ).prop('readonly', true).removeClass('form-control');
-                $( "#editform" ).attr('data-edit','false');
-                $('#submit').toggle()
-                $('#editform').toggle()
-            }
+        $("#submit").click(function () {
+            $('input').addClass("form-control-plaintext").prop('readonly', true).removeClass('form-control');
+            $("#editform").attr('data-edit', 'false');
+            $('#submit').toggle()
+            $('#editform').toggle()
+
         });
     </script>
-    @stop
+@stop

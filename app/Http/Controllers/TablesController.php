@@ -14,13 +14,25 @@ class TablesController extends Controller
     {
         $view = view('portal.tables.exclude');
 
-        $view->groups = Table::all()->groupBy('seat_count');
-        $view->excludes = Exclusion::where('excluded_type', 'App\Table')->get();
+        $view->groups = Table::with('excluded')->get()->groupBy('seat_count');
 
         return $view;
     }
 
-    public function excludes()
+    public function excluded()
+    {
+        $view = view('portal.tables.excluded');
+
+        $view->start = Carbon::parse(request()->get('start'))->startOfDay();
+        $view->end = Carbon::parse(request()->get('end'))->endOfDay();
+        $view->tables = Table::whereHas('excluded', function ($q) use ($view) {
+            $q->whereBetween('start', [$view->start, $view->end])->orWhereBetween('end', [$view->start, $view->end]);
+        })->get();
+
+        return $view;
+    }
+
+    public function excludesJson()
     {
         $start = Carbon::parse(request()->get('start_date') . ' ' . request()->get('start_time'));
         if (\request()->has('end_date')) {
@@ -73,11 +85,9 @@ class TablesController extends Controller
             // shift all the blockades of the table that end within the new period to the start of the new period
             $table->excluded()->where(function ($q) use ($start, $end){
                 $q->whereBetween('end', [$start, $end]);
-            })->get()->each(function ($q) use ($start) {
-                $q->start = $q->start;
-                $q->end = $start;
-                $q->save();
-            });
+            })->update([
+                'end' => $start
+            ]);
 
             // shift all the blockades of the table that start within the new period to the end of the new period
             $table->excluded()->where(function ($q) use ($start, $end){

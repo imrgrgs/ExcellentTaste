@@ -13,6 +13,17 @@ $('.datepicker').datepicker({
     todayHighlight: true,
     todayBtn: "linked"
 });
+
+$('a[data-toggle="modal"]').on('click', function () {
+    $.get($(this).attr('href'), $(this).attr('data-options')).then(function (res) {
+        $('#app').append(res);
+        $('#modal').modal('toggle').on('hidden.bs.modal', function (e) {
+            $(this).remove();
+        })
+    });
+    return false;
+});
+
 $('.select').select2();
 
 function resetSwitches() {
@@ -22,4 +33,21 @@ function resetSwitches() {
     });
 }
 
-resetSwitches()
+function getSwitchedTables()
+{
+    $.get('/tables/excluded', {
+        start_date: $('#start_date').val(),
+        start_time: $('#start_time').val(),
+        end_date: $('#end_date').val(),
+        end_time: $('#end_time').val()
+    }).then(function (res) {
+        $('input:checkbox').prop('checked', false);
+        $.each(res, function (id) {
+            $('#' + res[id] + ' > input').prop('checked', true);
+        });
+        $('.switchery').remove();
+        resetSwitches();
+    })
+}
+
+resetSwitches();

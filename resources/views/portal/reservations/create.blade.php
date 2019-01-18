@@ -98,7 +98,7 @@
             }).then(function (res) {
                 $('#tables option').prop('disabled', false);
                 $.each(res, function (id) {
-                    $('option[value=' + res[id] + ']').prop('disabled', true);
+                    $('#tables optgroup option[value=' + res[id] + ']').prop('disabled', true);
                 });
             })
         });
