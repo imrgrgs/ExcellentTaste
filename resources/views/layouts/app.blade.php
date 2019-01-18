@@ -26,9 +26,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.standalone.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.0/css/bootstrap-slider.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="{{ url('/css/animate.css') }}" rel="stylesheet">
     <link href="/css/pnotify.custom.min.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.css" media="all" rel="stylesheet" type="text/css" />
-
 
     <link rel="stylesheet" type="text/css" href="/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
