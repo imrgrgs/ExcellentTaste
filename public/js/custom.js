@@ -36,6 +36,28 @@ function resetSwitches() {
     });
 }
 
+function getExcludedTables() {
+    let options = {
+        start_date: $('#date').val(),
+        start_time: $('#start_time').val(),
+        withReservations: true
+    };
+    if ($('#end_time').length) {
+        options = {
+            start_date: $('#date').val(),
+            start_time: $('#start_time').val(),
+            end_time: $('#end_time').val(),
+            withReservations: true
+        };
+    }
+    $.get('/tables/excluded', options).then(function (res) {
+        $('#tables option').prop('disabled', false);
+        $.each(res, function (id) {
+            $('#table_' + res[id]).attr('disabled', true);
+        });
+    })
+}
+
 function getSwitchedTables()
 {
     $.get('/tables/excluded', {
