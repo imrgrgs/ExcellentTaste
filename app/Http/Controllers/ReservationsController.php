@@ -23,7 +23,7 @@ class ReservationsController extends Controller
             $q->whereHas('user', function ($q) use ($name) {
                 $q->where('last_name', 'like', '%' . $name . '%');
             });
-        })->paginate(25);
+        })->orderBy('date')->paginate(25);
 
         return $view;
     }
