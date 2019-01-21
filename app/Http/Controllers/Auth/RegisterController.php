@@ -71,7 +71,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'number' => rand(10000, 99999),
+            'number' => User::getLastNumber() + 1,
             'active' => true,
             'first_name' => $data['first_name'],
             'middle_name' => $data['middle_name'],

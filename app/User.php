@@ -49,4 +49,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Reservation::class);
     }
+
+    public static function getLastNumber()
+    {
+        $last = User::orderBy('number', 'desc')->first();
+
+        return $last->number !== null ? $last->number : 10000;
+    }
 }
