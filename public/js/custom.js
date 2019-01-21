@@ -29,7 +29,10 @@ $('.select').select2();
 function resetSwitches() {
     var elems = Array.prototype.slice.call(document.querySelectorAll('.switcheroo'));
     elems.forEach(function(html) {
-        var switchery = new Switchery(html);
+        var switchery = new Switchery(html, {
+            color: '#d40100',
+            secondaryColor: '#64bd63'
+        });
     });
 }
 
