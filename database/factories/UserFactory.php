@@ -15,14 +15,13 @@ use Faker\Generator as Faker;
 
 $factory->define(App\User::class, function (Faker $faker) {
     return [
-        'number' => $faker->unique()->numberBetween(10000, 99999),
         'active' => true,
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
         'address' => $faker->address,
-        'postal' => $faker-> postcode,
-        'city' => $faker-> city,
-        'phone' => $faker-> phoneNumber,
+        'postal' => $faker->postcode,
+        'city' => $faker->city,
+        'phone' => $faker->phoneNumber,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password' => bcrypt('secret'), // secret
