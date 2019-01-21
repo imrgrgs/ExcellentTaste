@@ -63,11 +63,13 @@ class ReservationsController extends Controller
                 'end' => request()->get('end_time') ? Carbon::parse($date.' '.request()->get('end_time')) : Carbon::parse($date . ' ' . request()->get('start_time'))->addHour(2)
             ];
         })->toArray();
-
+        $follow_up = count(Reservation::where('date', Carbon::parse($date))->whereHas('tables', function ($q) use ($tables){
+            return $q->whereIn('tables.id', $tables);
+        })->get());
         $user->reservations()->create([
             'diet' => $request->get('diet'),
             'date' => Carbon::parse($date),
-            'number' => Carbon::parse($date)->format('Ymd'). implode($request->get('tables')),
+            'number' => Carbon::parse($date)->format('Ymd'). $request->get('tables')[0]. $follow_up,
         ])->tables()->sync($tables);
 
         return redirect()->to('/profile')->with('success', 'Uw reservering is opgeslagen');
