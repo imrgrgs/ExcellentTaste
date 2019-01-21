@@ -23,12 +23,14 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/profile', 'ProfileController@store');
     Route::post('/profile/password', 'ProfileController@update');
     Route::get('/profile/delete', 'ProfileController@delete');
-
-    Route::get('reservations/create', 'ReservationsController@create');
-    Route::post('reservations/create', 'ReservationsController@save');
     Route::get('tables/excluded', 'TablesController@excludesJson');
 
-
+    Route::group(['prefix' => 'reservations'], function ($get) {
+        $get->get('create', 'ReservationsController@create');
+        $get->post('create', 'ReservationsController@save');
+        $get->post('search', 'ReservationsController@search')->middleware('role:administrator');
+        $get->get('{status?}', 'ReservationsController@index')->middleware('role:administrator');
+    });
     // administrator routes
     Route::group(['middleware' => ['auth', 'role:administrator']], function () {
     	 Route::group(['prefix' => 'users', 'as' => 'users'], function () {

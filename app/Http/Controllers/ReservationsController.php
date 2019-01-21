@@ -11,6 +11,23 @@ use Illuminate\Http\Request;
 
 class ReservationsController extends Controller
 {
+    public function index($status = 'active')
+    {
+        $view = view('portal.reservations.index');
+
+        $view->reservations = Reservation::when(($status != 'active'), function ($q) {
+//            $q->whereHas('nota');
+        })->when(session('portal.registrations.number'), function ($q, $number) {
+            $q->where('number', 'like', '%' . $number . '%');
+        })->when(session('portal.registrations.last_name'), function ($q, $name) {
+            $q->whereHas('user', function ($q) use ($name) {
+                $q->where('last_name', 'like', '%' . $name . '%');
+            });
+        })->paginate(2);
+
+        return $view;
+    }
+
     public function create()
     {
         $view = view('portal.reservations.create');;
@@ -54,5 +71,12 @@ class ReservationsController extends Controller
         ])->tables()->sync($tables);
 
         return redirect()->to('/profile')->with('success', 'Uw reservering is opgeslagen');
+    }
+
+    public function search(Request $request)
+    {
+        session()->put('portal.registrations', $request->except('_token'));
+
+        return redirect()->back();
     }
 }
