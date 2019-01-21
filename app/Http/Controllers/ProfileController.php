@@ -32,6 +32,19 @@ class ProfileController extends Controller
 
     public function store(Request $request)
     {
+
+         $this->validate($request,[
+             'first_name' => 'required',
+             'last_name' => 'required',
+             'address' => 'required',
+             'postal' => 'required',
+             'city' => 'required',
+             'email' => 'required|regex:/^(?=.*?[@])$/',
+             'phone' => 'required|numeric|size:8',
+
+        ]);
+
+
         $user = auth()->user();
 
         $user->first_name = $request->get('first_name');
