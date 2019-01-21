@@ -82,6 +82,8 @@ class TablesController extends Controller
         foreach ($excluded_tables as $id => $status) {
             $table = Table::find($id);
 
+            $table->excluded()->where('end', $end)->where('start', $start)->delete();
+
             // shift all the blockades of the table that end within the new period to the start of the new period
             $table->excluded()->where(function ($q) use ($start, $end){
                 $q->whereBetween('end', [$start, $end]);
@@ -97,7 +99,6 @@ class TablesController extends Controller
             ]);
 
             if ($status === 'on') {
-
                 $table->excluded()->where(function ($q) use ($start, $end){
                     $q->where('start', '<', $start)->where('end', '>', $end);
                 })->delete();
