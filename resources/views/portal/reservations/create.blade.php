@@ -72,6 +72,16 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="card w-100 mt-5">
+                <div class="card-body">
+                    <h3 class="card-title">Excellent Taste Plattegrond</h3>
+                    <div class="text-center">
+                        <img src="/img/plattegrond.png">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @stop
 
