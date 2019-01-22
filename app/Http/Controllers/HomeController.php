@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Reservation;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,7 +26,15 @@ class HomeController extends Controller
     public function index()
     {
         if (auth()->user()->hasRole('administrator')) {
-            return view('home');
+            $view = view('home');
+
+            $view->reservations = Reservation::all()->mapToGroups(function ($q) {
+                return  [Carbon::parse($q->date)->month => $q->id];
+            })->map(function ($month) {
+                return count($month->toArray());
+            })->sortKeys()->toArray();
+
+            return $view;
         }
         return redirect()->to('/profile');
     }
