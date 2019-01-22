@@ -5,6 +5,10 @@ return [
         'administrator' => [
             'users' => 'c,r,u,d',
             'profile' => 'r,u'
+        ],
+        'employee' => [
+            'users' => 'c,r,u,d',
+            'profile' => 'r,u'
         ]
     ],
     'permission_structure' => [

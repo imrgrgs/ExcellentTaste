@@ -9,10 +9,8 @@ $(document).ready(function() {
             });
             $('.navbar a').attr('style', 'color: #000 !important');
         } else {
-            $(".navbar").css("background-color", "transparent");
-            $(".navbar a").css({
-                'color': 'rgba(242, 242, 242, 0.6)'
-            });
+            $(".navbar").css("background-color", "rgba(239, 239, 239, 0.4)");
+            $('.navbar a').attr('style', 'color: #000 !important');
         }
     });
 });//end of script 

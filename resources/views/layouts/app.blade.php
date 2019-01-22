@@ -30,6 +30,9 @@
     <link href="{{ url('/css/animate.css') }}" rel="stylesheet">
     <link href="{{ url('css/switchery.css') }}" rel="stylesheet">
     <link href="/css/pnotify.custom.min.css" media="all" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
     <link rel="stylesheet" type="text/css" href="/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -70,10 +73,27 @@
                                             <span class="d-none d-md-inline">Reserveren</span>
                                         </a>
                                     </li>
+                                    @role('employee|administrator')
+                                        <li class="nav-item {{ request()->is('bestellingen/create') ? 'active' : '' }}">
+                                            <a class="nav-link pl-0" href="{{ url('bestellingen/create') }}"><i class="fas fa-ticket-alt"></i>
+                                                <span class="d-none d-md-inline">Bestellingen</span>
+                                            </a>
+                                        </li>
+                                    @endrole
                                     @role('administrator')
+                                        <li class="nav-item {{ request()->is('reservations*') ? 'active' : '' }}">
+                                            <a class="nav-link pl-0" href="{{ url('reservations/') }}"><i class="fas fa-users"></i>
+                                                <span class="d-none d-md-inline">Reserveringen</span>
+                                            </a>
+                                        </li>
                                         <li class="nav-item {{ request()->is('users*') ? 'active' : '' }}">
                                             <a class="nav-link pl-0" href="{{ url('users/') }}"><i class="fas fa-users"></i>
                                                 <span class="d-none d-md-inline">Gebruikers</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item {{ request()->is('products/*') ? 'active' : '' }}">
+                                            <a class="nav-link pl-0" href="{{ url('products/') }}"><i class="fas fa-users"></i>
+                                                <span class="d-none d-md-inline">Producten</span>
                                             </a>
                                         </li>
                                         <li class="nav-item {{ request()->is('tables/exclude') ? 'active' : '' }}">
