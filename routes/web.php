@@ -22,12 +22,15 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/profile', 'ProfileController@index')->name('profile');
     Route::post('/profile', 'ProfileController@store');
     Route::post('/profile/password', 'ProfileController@update');
-    Route::get('/profile/delete', 'ProfileController@delete')->name('profile');
-
-    Route::get('reservations/create', 'ReservationsController@create');
-    Route::post('reservations/create', 'ReservationsController@save');
+    Route::get('/profile/delete', 'ProfileController@delete');
     Route::get('tables/excluded', 'TablesController@excludesJson');
 
+    Route::group(['prefix' => 'reservations'], function ($get) {
+        $get->get('create', 'ReservationsController@create');
+        $get->post('create', 'ReservationsController@save');
+        $get->post('search', 'ReservationsController@search')->middleware('role:administrator');
+        $get->get('{status?}', 'ReservationsController@index')->middleware('role:administrator');
+    });
 
     // administrator routes
     Route::group(['middleware' => ['auth', 'role:administrator']], function () {
@@ -54,5 +57,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             $get->post('exclude', 'TablesController@save');
             $get->get('excluded-tables', 'TablesController@excluded');
         });
+    });
+
+    // employee routes
+    Route::group(['middleware' => ['auth', 'role:employee']], function () {
+
     });
 });

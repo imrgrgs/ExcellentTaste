@@ -20,7 +20,7 @@
                                 <input class="form-control col-lg-4 time" type="text" name="start_time" id="start_time" value="10:00" data-default="10:00">
                                 <span class="col-lg-4 text-center">-</span>
                                 @role('administrator')
-                                <input class="time form-control col-lg-4" data-default="23:00" type="text" name="end_time" id="end_time" value="23:00">
+                                    <input class="time form-control col-lg-4" data-default="23:00" type="text" name="end_time" id="end_time" value="23:00">
                                 @endrole
                             </div>
                         </div>
@@ -31,7 +31,7 @@
                                     @foreach($table_groups as $key => $table_group)
                                         <optgroup label="Tafel van {{ $key }}">
                                             @foreach($table_group as $table)
-                                                <option data-content="{{ $table->seat_count }}" value="{{ $table->id }}">{{ $table->id }}</option>
+                                                <option data-content="{{ $table->seat_count }}" id="table_{{ $table->id }}" value="{{ $table->id }}">{{ $table->id }}</option>
                                             @endforeach
                                         </optgroup>
                                     @endforeach
@@ -72,6 +72,16 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="card w-100 mt-5">
+                <div class="card-body">
+                    <h3 class="card-title">Excellent Taste Plattegrond</h3>
+                    <div class="text-center">
+                        <img src="/img/plattegrond.png">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @stop
 
@@ -91,16 +101,8 @@
             $('#seat').val(chairs)
         });
         $('#start_time,#date').on('change', function () {
-            $.get('/tables/excluded', {
-                start_date: $('#date').val(),
-                start_time: $('#start_time').val(),
-                withReservations: true
-            }).then(function (res) {
-                $('#tables option').prop('disabled', false);
-                $.each(res, function (id) {
-                    $('#tables optgroup option[value=' + res[id] + ']').prop('disabled', true);
-                });
-            })
+            getExcludedTables();
         });
+        getExcludedTables();
     </script>
 @stop

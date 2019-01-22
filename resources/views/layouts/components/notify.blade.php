@@ -18,9 +18,16 @@
 @if(session()->has('errors'))
     <script>
         $(document).ready(function () {
+            var errors =  @if ($errors->any())
+                '<div class="alert alert-danger"><ul>' +
+                    @foreach ($errors->all() as $error)
+                        '<li>{{ $error }}</li>' +
+                    @endforeach
+                '</ul></div>'
+            @endif
             new PNotify({
                 title: 'Oops',
-                text: 'Er is iets fout gegaan',
+                text: errors,
                 type: 'error',
                 animate: {
                     animate: true,
@@ -31,3 +38,4 @@
         });
     </script>
 @endif
+s

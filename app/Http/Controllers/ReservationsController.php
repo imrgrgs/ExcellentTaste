@@ -11,6 +11,23 @@ use Illuminate\Http\Request;
 
 class ReservationsController extends Controller
 {
+    public function index($status = 'active')
+    {
+        $view = view('portal.reservations.index');
+
+        $view->reservations = Reservation::when(($status != 'active'), function ($q) {
+//            $q->whereHas('nota');
+        })->when(session('portal.registrations.number'), function ($q, $number) {
+            $q->where('number', 'like', '%' . $number . '%');
+        })->when(session('portal.registrations.last_name'), function ($q, $name) {
+            $q->whereHas('user', function ($q) use ($name) {
+                $q->where('last_name', 'like', '%' . $name . '%');
+            });
+        })->orderBy('date')->paginate(25);
+
+        return $view;
+    }
+
     public function create()
     {
         $view = view('portal.reservations.create');;
@@ -46,13 +63,22 @@ class ReservationsController extends Controller
                 'end' => request()->get('end_time') ? Carbon::parse($date.' '.request()->get('end_time')) : Carbon::parse($date . ' ' . request()->get('start_time'))->addHour(2)
             ];
         })->toArray();
-
+        $follow_up = count(Reservation::where('date', Carbon::parse($date))->whereHas('tables', function ($q) use ($tables){
+            return $q->whereIn('tables.id', $tables);
+        })->get());
         $user->reservations()->create([
             'diet' => $request->get('diet'),
             'date' => Carbon::parse($date),
-            'number' => Carbon::parse($date)->format('Ymd'). implode($request->get('tables')),
+            'number' => Carbon::parse($date)->format('Ymd'). $request->get('tables')[0]. $follow_up,
         ])->tables()->sync($tables);
 
         return redirect()->to('/profile')->with('success', 'Uw reservering is opgeslagen');
+    }
+
+    public function search(Request $request)
+    {
+        session()->put('portal.registrations', $request->except('_token'));
+
+        return redirect()->back();
     }
 }

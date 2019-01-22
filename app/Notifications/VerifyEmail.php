@@ -27,13 +27,13 @@ class VerifyEmail extends VerifyEmailBase
             return call_user_func(static::$toMailCallback, $notifiable);
         }
         return (new MailMessage)
-            ->subject(Lang::getFromJson('Verify Email Address'))
-            ->line(Lang::getFromJson('Please click the button below to verify your email address.'))
-            ->line(Lang::getFromJson('After verification, you can log in with your password and unique customer number. Your number: ' . $this->number ))
+            ->subject(Lang::getFromJson('Bevestig uw e-mailadres'))
+            ->line(Lang::getFromJson('Klik op de onderstaande knop om uw e-mailadres te verifiëren.'))
+            ->line(Lang::getFromJson('Na verificatie kunt u inloggen met uw wachtwoord en unieke klantnummer. Uw nummer: ' . $this->number ))
             ->action(
-                Lang::getFromJson('Verify Email Address'),
+                Lang::getFromJson('Bevestig e-mailadres'),
                 $this->verificationUrl($notifiable)
             )
-            ->line(Lang::getFromJson('If you did not create an account, no further action is required.'));
+            ->line(Lang::getFromJson('Als u geen account heeft aangemaakt, hoeft u verder niets te doen.'));
     }
 }
