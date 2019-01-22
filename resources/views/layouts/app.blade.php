@@ -71,9 +71,14 @@
                                         </a>
                                     </li>
                                     @role('administrator')
-                                        <li class="nav-item {{ request()->is('reservations/*') ? 'active' : '' }}">
+                                        <li class="nav-item {{ request()->is('users/*') ? 'active' : '' }}">
                                             <a class="nav-link pl-0" href="{{ url('users/') }}"><i class="fas fa-users"></i>
                                                 <span class="d-none d-md-inline">Gebruikers</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item {{ request()->is('products/*') ? 'active' : '' }}">
+                                            <a class="nav-link pl-0" href="{{ url('products/') }}"><i class="fas fa-users"></i>
+                                                <span class="d-none d-md-inline">Producten</span>
                                             </a>
                                         </li>
                                         <li class="nav-item {{ request()->is('tables/exclude') ? 'active' : '' }}">

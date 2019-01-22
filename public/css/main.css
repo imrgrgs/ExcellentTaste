@@ -27,3 +27,7 @@
 .featurette-divider{
 	background-color: #fff;
 }
+
+.pull-right{
+	float:right;
+}
