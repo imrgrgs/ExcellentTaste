@@ -20,6 +20,10 @@ class UsersTableSeeder extends Seeder
             if ($user->id === 1) {
                 $user->attachRole('administrator');
             }
+
+            if ($user->id === 2) {
+                $user->attachRole('employee');
+            }
         });
     }
 }
