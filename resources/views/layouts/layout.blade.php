@@ -20,6 +20,9 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
         <link href="{{ asset('css/mainwelcome.css') }}" rel="stylesheet">
+        <script type="text/javascript" src="{{ url('js/pnotify.custom.min.js') }}"></script>
+        <link href="{{ url('/css/animate.css') }}" rel="stylesheet">
+        <link href="/css/pnotify.custom.min.css" media="all" rel="stylesheet" type="text/css" />
     </head>
     <body class="bg-dark">
         <header>
@@ -70,5 +73,6 @@
         </header>
 
         @yield('content')
+        @include('layouts.components.notify')
     </body>
 </html>

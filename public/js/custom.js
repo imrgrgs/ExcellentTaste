@@ -45,7 +45,7 @@ if ($('#reservation-chart').length > 0) {
                 "December"
             ],
             datasets: [{
-                label: '# reserveringen',
+                label: 'aantal reserveringen',
                 data: $('#reservation-chart').attr('data-content').split(','),
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255,99,132,1)',
