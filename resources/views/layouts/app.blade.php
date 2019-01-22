@@ -74,8 +74,8 @@
                                         </a>
                                     </li>
                                     @role('employee|administrator')
-                                        <li class="nav-item {{ request()->is('bestellingen/create') ? 'active' : '' }}">
-                                            <a class="nav-link pl-0" href="{{ url('bestellingen/create') }}"><i class="fas fa-ticket-alt"></i>
+                                        <li class="nav-item {{ request()->is('orders/create') ? 'active' : '' }}">
+                                            <a class="nav-link pl-0" href="{{ url('orders/create') }}"><i class="fas fa-ticket-alt"></i>
                                                 <span class="d-none d-md-inline">Bestellingen</span>
                                             </a>
                                         </li>
