@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         $get->post('search', 'ReservationsController@search')->middleware('role:administrator');
         $get->get('{status?}', 'ReservationsController@index')->middleware('role:administrator');
     });
+
     // administrator routes
     Route::group(['middleware' => ['auth', 'role:administrator']], function () {
     	 Route::group(['prefix' => 'users', 'as' => 'users'], function () {
@@ -43,10 +44,16 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::post('/{user}/block', 'UsersController@block');
             Route::post('/{user}/activate', 'UsersController@activate');
         });
+
         Route::group(['prefix' => 'tables'], function ($get) {
             $get->get('exclude', 'TablesController@index');
             $get->post('exclude', 'TablesController@save');
             $get->get('excluded-tables', 'TablesController@excluded');
         });
+    });
+
+    // employee routes
+    Route::group(['middleware' => ['auth', 'role:employee']], function () {
+
     });
 });
