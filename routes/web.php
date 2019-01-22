@@ -26,6 +26,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/profile/{reservation}/delete', 'ProfileController@reservationdelete');
     Route::get('tables/excluded', 'TablesController@excludesJson');
 
+    Route::get('/menu', 'MenuController@index')->name('menu');
+    Route::post('/menu', 'MenuController@store');
+
     Route::group(['prefix' => 'reservations'], function ($get) {
         $get->get('create', 'ReservationsController@create');
         $get->post('create', 'ReservationsController@save');
@@ -77,6 +80,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     // employee routes
     Route::group(['middleware' => ['auth', 'role:employee']], function () {
-
     });
+
 });
