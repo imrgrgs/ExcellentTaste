@@ -32,17 +32,39 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         $get->get('{status?}', 'ReservationsController@index')->middleware('role:administrator');
     });
 
+    Route::group(['middleware' => ['auth', 'role:employee|administrator']], function () {
+        
+        Route::group(['prefix' => 'orders', 'as' => 'orders'], function () {
+            Route::get('/', 'OrderController@index');
+            Route::get('/create', 'OrderController@create');
+            Route::post('/create', 'OrderController@store');
+
+            Route::group(['middleware' => ['auth', 'role:administrator']], function () {
+                Route::post('/delete', 'OrderController@destroy');
+                Route::get('/{id}/edit', 'OrderController@edit');
+                Route::post('/{id}/update', 'OrderController@update');
+            });
+        });
+    });
+
     // administrator routes
     Route::group(['middleware' => ['auth', 'role:administrator']], function () {
-    	 Route::group(['prefix' => 'users', 'as' => 'users'], function () {
+    	Route::group(['prefix' => 'users', 'as' => 'users'], function () {
             Route::get('/', 'UsersController@index');
-            Route::get('/create', 'UsersController@create');
-            Route::post('/create', 'UsersController@store');
             Route::post('/delete/', 'UsersController@softdelete');
             Route::get('/{user}/edit', 'UsersController@edit');
             Route::post('/{user}/update', 'UsersController@update');
             Route::post('/{user}/block', 'UsersController@block');
             Route::post('/{user}/activate', 'UsersController@activate');
+        });
+
+        Route::group(['prefix' => 'products', 'as' => 'products'], function () {
+            Route::get('/', 'ProductsController@index');
+            Route::get('/create', 'ProductsController@create');
+            Route::post('/create', 'ProductsController@store');
+            Route::post('/delete', 'ProductsController@destroy');
+            Route::get('/{id}/edit', 'ProductsController@edit');
+            Route::post('/{id}/update', 'ProductsController@update');
         });
 
         Route::group(['prefix' => 'tables'], function ($get) {
