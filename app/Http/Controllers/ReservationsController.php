@@ -13,16 +13,22 @@ class ReservationsController extends Controller
 {
     public function index($status = 'active')
     {
+        $search = session()->get('portal.registrations');
+
         $view = view('portal.reservations.index');
 
+        $view->search = $search;
         $view->reservations = Reservation::when(($status != 'active'), function ($q) {
 //            $q->whereHas('nota');
-        })->when(session('portal.registrations.number'), function ($q, $number) {
+        })->when($search['number'], function ($q, $number) {
             $q->where('number', 'like', '%' . $number . '%');
-        })->when(session('portal.registrations.last_name'), function ($q, $name) {
+        })->when($search['last_name'], function ($q, $name) {
             $q->whereHas('user', function ($q) use ($name) {
                 $q->where('last_name', 'like', '%' . $name . '%');
             });
+        })->when($search['range'], function ($q, $range) {
+//            dd(explode(' - ', $range));
+            $q->whereBetween('date', explode(' - ', $range));
         })->orderBy('date')->paginate(25);
 
         return $view;
