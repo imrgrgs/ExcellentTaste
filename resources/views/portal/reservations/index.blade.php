@@ -22,8 +22,9 @@
                     </h3>
                     <form method="post" action="{{ url('reservations/search') }}" class="row">
                         @csrf
-                        <input class="offset-lg-6 col-lg-3 form-control" type="text" name="last_name" placeholder="Achternaam" value="{{ session('portal.registrations.last_name') ? session('portal.registrations.last_name') : '' }}">
-                        <input class="col-lg-3 form-control" type="text" name="number" placeholder="Reservering nummer" value="{{ session('portal.registrations.number') ? session('portal.registrations.number') : '' }}">
+                        <input class="date-range col-lg-3 offset-lg-3 form-control" type="text" name="range" value="{{ $search['range'] ? $search['range'] : '' }}" />
+                        <input class="col-lg-3 form-control" type="text" name="last_name" placeholder="Achternaam" value="{{ $search['last_name'] ? $search['last_name'] : '' }}">
+                        <input class="col-lg-3 form-control" type="text" name="number" placeholder="Reservering nummer" value="{{ $search['number'] ? $search['number'] : '' }}">
                     </form>
                     <br>
                     <table class="table table-striped table-hover">
