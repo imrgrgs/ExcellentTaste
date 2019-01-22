@@ -123,6 +123,9 @@
                                 <td>
                                     Reserveringsnr.
                                 </td>
+                                <td>
+                                    &nbsp;
+                                </td>
                             </tr>
                            </thead>
                            @foreach($user->reservations as $reservation)

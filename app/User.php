@@ -57,4 +57,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
         return $last->number !== null ? $last->number : 10000;
     }
+
+    public function getNameAttribute()
+    {
+        return $this->first_name . ($this->middle_name ? ' '.$this->middle_name : ''). ' ' . $this->last_name;
+    }
 }

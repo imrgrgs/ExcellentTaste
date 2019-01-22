@@ -53,7 +53,7 @@
                                 <select id="customer" class="select form-control" name="customer_id">
                                     <option>Kies een optie..</option>
                                     @foreach($customers as $customer)
-                                        <option value="{{ $customer->id }}">{{ $customer->number }}</option>
+                                        <option value="{{ $customer->id }}">{{ $customer->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

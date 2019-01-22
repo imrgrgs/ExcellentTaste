@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Excellent Taste</title>
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
-    <script type="text/javascript" src="{{ url('js/pnotify.custom.min.js') }}"></script>
+        <title>Excellent Taste</title>
+        <!-- Scripts -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+        <script type="text/javascript" src="{{ url('js/pnotify.custom.min.js') }}"></script>
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.standalone.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.0/css/bootstrap-slider.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="{{ url('/css/animate.css') }}" rel="stylesheet">
-    <link href="{{ url('css/switchery.css') }}" rel="stylesheet">
-    <link href="/css/pnotify.custom.min.css" media="all" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+        <!-- Styles -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.standalone.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.0/css/bootstrap-slider.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css" rel="stylesheet" type="text/css">
+        <link href="{{ url('/css/animate.css') }}" rel="stylesheet">
+        <link href="{{ url('css/switchery.css') }}" rel="stylesheet">
+        <link href="/css/pnotify.custom.min.css" media="all" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
 
-    <link rel="stylesheet" type="text/css" href="/style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="/style.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
-</head>
+    </head>
     <body id="app" class="bg-light text-black-50">
         <div class="container-fluid">
             <div class="row">
@@ -52,11 +52,11 @@
                                     </a>
                                 </li>
                                 @role('administrator')
-                                    <li class="nav-item {{ request()->is('home') ? 'active' : '' }}">
-                                        <a class="nav-link pl-0" href="{{ url('/home') }}"><i class="fas fa-home"></i>
-                                            <span class="d-none d-md-inline">Home</span>
-                                        </a>
-                                    </li>
+                                <li class="nav-item {{ request()->is('home') ? 'active' : '' }}">
+                                    <a class="nav-link pl-0" href="{{ url('/home') }}"><i class="fas fa-home"></i>
+                                        <span class="d-none d-md-inline">Home</span>
+                                    </a>
+                                </li>
                                 @endrole
                                 <li class="nav-item {{ request()->is('profile') ? 'active' : '' }}">
                                     <a class="nav-link pl-0" href="{{ url('/profile') }}"><i class="fas fa-address-card"></i>
@@ -70,38 +70,41 @@
                                 </li>
                                 @auth
                                     <li class="nav-item {{ request()->is('reservations/create') ? 'active' : '' }}">
-                                        <a class="nav-link pl-0" href="{{ url('reservations/create') }}"><i class="fas fa-ticket-alt"></i>
+                                        <a class="nav-link pl-0" href="{{ url('reservations/create') }}"><i class="fas fa-calendar"></i>
                                             <span class="d-none d-md-inline">Reserveren</span>
                                         </a>
                                     </li>
                                     @role('employee|administrator')
-                                        <li class="nav-item {{ request()->is('bestellingen/create') ? 'active' : '' }}">
-                                            <a class="nav-link pl-0" href="{{ url('bestellingen/create') }}"><i class="fas fa-ticket-alt"></i>
-                                                <span class="d-none d-md-inline">Bestellingen</span>
-                                            </a>
-                                        </li>
+                                    <li class="nav-item {{ request()->is('bestellingen/create') ? 'active' : '' }}">
+                                        <a class="nav-link pl-0" href="{{ url('bestellingen/create') }}"><i class="fas fa-ticket-alt"></i>
+                                            <span class="d-none d-md-inline">Bestellingen</span>
+                                        </a>
+                                    </li>
                                     @endrole
                                     @role('administrator')
-                                        <li class="nav-item {{ request()->is('reservations*') ? 'active' : '' }}">
-                                            <a class="nav-link pl-0" href="{{ url('reservations/') }}"><i class="fas fa-users"></i>
-                                                <span class="d-none d-md-inline">Reserveringen</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item {{ request()->is('users*') ? 'active' : '' }}">
-                                            <a class="nav-link pl-0" href="{{ url('users/') }}"><i class="fas fa-users"></i>
-                                                <span class="d-none d-md-inline">Gebruikers</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item {{ request()->is('products/*') ? 'active' : '' }}">
-                                            <a class="nav-link pl-0" href="{{ url('products/') }}"><i class="fas fa-users"></i>
-                                                <span class="d-none d-md-inline">Producten</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item {{ request()->is('tables/exclude') ? 'active' : '' }}">
-                                            <a class="nav-link pl-0" href="{{ url('tables/exclude') }}"><i class="fas fa-ban"></i>
-                                                <span class="d-none d-md-inline">Tafels uitsluiten</span>
-                                            </a>
-                                        </li>
+                                    <li class="nav-item disabled border-secondary border-bottom mt-4">
+                                        <span class="nav-link pl-0 d-none d-md-inline">Beheer</span>
+                                    </li>
+                                    <li class="nav-item {{ request()->is('reservations*') ? 'active' : '' }}">
+                                        <a class="nav-link pl-0" href="{{ url('reservations/') }}"><i class="fas fa-archive"></i>
+                                            <span class="d-none d-md-inline">Reserveringen</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item {{ request()->is('users*') ? 'active' : '' }}">
+                                        <a class="nav-link pl-0" href="{{ url('users/') }}"><i class="fas fa-users"></i>
+                                            <span class="d-none d-md-inline">Gebruikers</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item {{ request()->is('products/*') ? 'active' : '' }}">
+                                        <a class="nav-link pl-0" href="{{ url('products/') }}"><i class="fas fa-barcode"></i>
+                                            <span class="d-none d-md-inline">Producten</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item {{ request()->is('tables/exclude') ? 'active' : '' }}">
+                                        <a class="nav-link pl-0" href="{{ url('tables/exclude') }}"><i class="fas fa-ban"></i>
+                                            <span class="d-none d-md-inline">Tafels uitsluiten</span>
+                                        </a>
+                                    </li>
                                     @endrole
                                     <li class="nav-item">
                                         <a class="nav-link pl-0" href="{{ route('logout') }}"
