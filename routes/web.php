@@ -32,6 +32,21 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         $get->get('{status?}', 'ReservationsController@index')->middleware('role:administrator');
     });
 
+    Route::group(['middleware' => ['auth', 'role:employee|administrator']], function () {
+        
+        Route::group(['prefix' => 'orders', 'as' => 'orders'], function () {
+            Route::get('/', 'OrderController@index');
+            Route::get('/create', 'OrderController@create');
+            Route::post('/create', 'OrderController@store');
+
+            Route::group(['middleware' => ['auth', 'role:administrator']], function () {
+                Route::post('/delete', 'OrderController@destroy');
+                Route::get('/{id}/edit', 'OrderController@edit');
+                Route::post('/{id}/update', 'OrderController@update');
+            });
+        });
+    });
+
     // administrator routes
     Route::group(['middleware' => ['auth', 'role:administrator']], function () {
     	Route::group(['prefix' => 'users', 'as' => 'users'], function () {

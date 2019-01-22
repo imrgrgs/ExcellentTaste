@@ -70,6 +70,13 @@
                                             <span class="d-none d-md-inline">Reserveren</span>
                                         </a>
                                     </li>
+                                    @role('employee|administrator')
+                                        <li class="nav-item {{ request()->is('bestellingen/create') ? 'active' : '' }}">
+                                            <a class="nav-link pl-0" href="{{ url('bestellingen/create') }}"><i class="fas fa-ticket-alt"></i>
+                                                <span class="d-none d-md-inline">Bestellingen</span>
+                                            </a>
+                                        </li>
+                                    @endrole
                                     @role('administrator')
                                         <li class="nav-item {{ request()->is('reservations*') ? 'active' : '' }}">
                                             <a class="nav-link pl-0" href="{{ url('reservations/') }}"><i class="fas fa-users"></i>
