@@ -27,12 +27,14 @@ class HomeController extends Controller
     {
         if (auth()->user()->hasRole('administrator')) {
             $view = view('home');
+            foreach (range(1, 12) as $month) {
+                $data[$month] = 0;
+            }
+            foreach (Reservation::all() as $reservation) {
+                $data[Carbon::parse($reservation->date)->month]++;
+            }
 
-            $view->reservations = Reservation::all()->mapToGroups(function ($q) {
-                return  [Carbon::parse($q->date)->month => $q->id];
-            })->map(function ($month) {
-                return count($month->toArray());
-            })->sortKeys()->toArray();
+            $view->reservations = $data;
 
             return $view;
         }
