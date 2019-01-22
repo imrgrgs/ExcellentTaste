@@ -12,7 +12,7 @@
                             <div class="form-group row">
                                 <label for="seat" class="col-sm-4 col-form-label">Voornaam</label>
                                 <div class="col-sm-8">
-                                    <input type="text" name="first_name" class="form-control-plaintext" readonly id="seat" value="{{$user->first_name}}" required/>
+                                    <input type="text" name="first_name" class="form-control-plaintext" readonly id="seat" value="{{$user->first_name}}"/>
                                 </div>
                                 <label for="seat" class="col-sm-4 col-form-label">Tussenvoegsel</label>
                                 <div class="col-sm-8">
@@ -20,7 +20,7 @@
                                 </div>
                                 <label for="seat" class="col-sm-4 col-form-label">Achternaam</label>
                                 <div class="col-sm-8">
-                                    <input type="text" name="last_name" class="form-control-plaintext" readonly id="seat" value="{{$user->last_name}}" required/>
+                                    <input type="text" name="last_name" class="form-control-plaintext" readonly id="seat" value="{{$user->last_name}}"/>
                                 </div>
                                 <label for="seat" class="col-sm-4 col-form-label">Adres</label>
                                 <div class="col-sm-8">
@@ -96,6 +96,68 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Mijn reserveringen</h5>
+                       <table class="table table-striped">
+                           <thead>
+                            <tr>
+                                <td>
+                                    Datum
+                                </td>
+                                <td>
+                                    Tijd
+                                </td>
+                                <td>
+                                    Tafelnummer
+                                </td>
+                                <td>
+                                    Aantal Stoelen
+                                </td>
+                                <td>
+                                    Dieet Wensen
+                                </td>
+                                <td>
+                                    Reserveringsnr.
+                                </td>
+                            </tr>
+                           </thead>
+                           @foreach($user->reservations as $reservation)
+                           <tr>
+                               <td>
+                                   {{$reservation->date_string}}
+                               </td>
+                               <td>
+                                   {{$reservation->tables->first()->start_time}} - {{$reservation->tables->first()->end_time}}
+                               </td>
+                               <td>
+                                   {{$reservation->tables->first()->id}}
+                               </td>
+                               <td>
+                                   {{$reservation->tables->first()->seat_count}}
+                               </td>
+                               <td>
+                                   <span class="d-inline-block text-truncate" style="max-width: 150px;">
+                                       <span data-toggle="tooltip" data-placement="bottom" title="{{$reservation->diet}}"> {{$reservation->diet}}</span>
+                                   </span>
+                               </td>
+                               <td>
+                                   {{$reservation->number}}
+                               </td>
+                               <td>
+                                   <a href="/profile/{{$reservation->id}}/delete" class="btn btn-danger" onclick="return confirm('Weet u zeker dat u uw reservering wilt verwijderen?');" id="">Verwijderen</a>
+                               </td>
+                           </tr>
+                               @endforeach
+                       </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
             <script type="text/javascript">
                 $('#submit').hide()
                 $("#editform").click(function () {
@@ -113,6 +175,11 @@
                         $('#submit').toggle()
                         $('#editform').toggle()
                     }
+                });
+            </script>
+            <script>
+                $(document).ready(function(){
+                    $('[data-toggle="tooltip"]').tooltip();
                 });
             </script>
 @stop

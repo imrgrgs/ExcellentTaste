@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/profile', 'ProfileController@store');
     Route::post('/profile/password', 'ProfileController@update');
     Route::get('/profile/delete', 'ProfileController@delete');
+    Route::get('/profile/{reservation}/delete', 'ProfileController@reservationdelete');
     Route::get('tables/excluded', 'TablesController@excludesJson');
 
     Route::group(['prefix' => 'reservations'], function ($get) {
