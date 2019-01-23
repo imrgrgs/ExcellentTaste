@@ -29,6 +29,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/menu', 'MenuController@index')->name('menu');
     Route::post('/menu', 'MenuController@store');
 
+    Route::get('/contact', 'ContactController@index')->name('contact');
+
     Route::group(['prefix' => 'reservations'], function ($get) {
         $get->get('create', 'ReservationsController@create');
         $get->post('create', 'ReservationsController@save');
