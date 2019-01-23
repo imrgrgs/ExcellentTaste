@@ -64,7 +64,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link pl-0" href="#"><i class="fa fa-book fa-fw"></i>
+                                    <a class="nav-link pl-0" href="{{ url('menu') }}"><i class="fa fa-book fa-fw"></i>
                                         <span class="d-none d-md-inline">Menu</span>
                                     </a>
                                 </li>

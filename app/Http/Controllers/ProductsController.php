@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
 use App\Product;
 
@@ -27,7 +28,11 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('portal.products.create');
+        $view = view('portal.products.create');
+
+        $view->categories = Category::all();
+
+        return $view;
     }
 
     /**
@@ -43,6 +48,7 @@ class ProductsController extends Controller
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $request->price;
+        $product->category_id = $request->get('category_id');
         $product->save();
 
         return redirect('/products')->with('success', 'product '.$product->name.' toegevoegd');

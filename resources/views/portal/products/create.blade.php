@@ -4,7 +4,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header px-4">Product toevoegen<span><a href="/products"><i class="la la-backward la-2x pull-right"></i></a></span></div>
+                <div class="card-header px-4">Product toevoegen<span><a href="/products"><i class="la la-backward la-2x pull-right"></i></a></span>
+                </div>
 
                 <div class="card-body">
 
@@ -39,6 +40,17 @@
                             @if($errors->has('name'))
                                 <small class="text-danger">{{ $errors->first('name') }}</small>
                             @endif
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="category_id" class="col-sm-2 col-form-label">Categorie</label>
+                            <div class="col-sm-10">
+                                <select class="select form-control" name="category_id">
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
 
                         <div class="form-group row">
