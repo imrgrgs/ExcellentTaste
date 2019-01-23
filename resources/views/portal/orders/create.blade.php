@@ -7,7 +7,7 @@
         <div class="col-md-6">
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Reservering</label>
-                    <select class="form-control">
+                    <select class="form-control select">
                     @foreach($reservations as $reservation)
                         <option>{{$reservation->number}}</option>
                     @endforeach
@@ -17,7 +17,7 @@
         <div class="col-md-6">
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Device</label>
-                    <select class="form-control">
+                    <select class="form-control select">
                     @foreach($devices as $device)
                         <option>{{$device}}</option>
                     @endforeach
