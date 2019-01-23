@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Notifications\VerifyEmail;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,9 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use LaratrustUserTrait;
-    use Notifiable;
-    use SoftDeletes;
+    use LaratrustUserTrait, Notifiable, SoftDeletes, ThrottlesLogins;
 
     /**
      * The attributes that are mass assignable.
@@ -35,6 +34,8 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
     protected $dates = ['deleted_at'];
 
+    protected $maxAttempts = 3;
+
     /**
      * Send the email verification notification.
      *
@@ -55,5 +56,10 @@ class User extends Authenticatable implements MustVerifyEmail
         $last = User::orderBy('number', 'desc')->first();
 
         return $last->number !== null ? $last->number : 10000;
+    }
+
+    public function getNameAttribute()
+    {
+        return $this->first_name . ($this->middle_name ? ' '.$this->middle_name : ''). ' ' . $this->last_name;
     }
 }

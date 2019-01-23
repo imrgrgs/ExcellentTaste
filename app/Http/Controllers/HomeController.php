@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Reservation;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,7 +26,17 @@ class HomeController extends Controller
     public function index()
     {
         if (auth()->user()->hasRole('administrator')) {
-            return view('home');
+            $view = view('home');
+            foreach (range(1, 12) as $month) {
+                $data[$month] = 0;
+            }
+            foreach (Reservation::all() as $reservation) {
+                $data[Carbon::parse($reservation->date)->month]++;
+            }
+
+            $view->reservations = $data;
+
+            return $view;
         }
         return redirect()->to('/profile');
     }

@@ -27,7 +27,6 @@ class ReservationsController extends Controller
                 $q->where('last_name', 'like', '%' . $name . '%');
             });
         })->when($search['range'], function ($q, $range) {
-//            dd(explode(' - ', $range));
             $q->whereBetween('date', explode(' - ', $range));
         })->orderBy('date')->paginate(25);
 

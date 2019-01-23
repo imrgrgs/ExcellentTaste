@@ -42,7 +42,7 @@
                         </thead>
                         @foreach($reservations as $reservation)
                             <tr>
-                                <td>{{ $reservation->user->last_name }}</td>
+                                <td>{{ $reservation->user->name }}</td>
                                 <td>{{ $reservation->number }}</td>
                                 <td>{{ implode(', ', $reservation->tables->pluck('id')->toArray()) }}</td>
                                 <td>{{ $reservation->date_string }}</td>

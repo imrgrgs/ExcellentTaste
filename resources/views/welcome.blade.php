@@ -10,7 +10,7 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" alt="hamburger">
-                <div class="container">
+                    <div class="container">
                     <div class="carousel-caption text-left">
                         <h1>Example headline.</h1>
                         <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
@@ -19,9 +19,9 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="food">
+                <div class="w-100 h-100" style="background: url('{{ url('img/close-up.jpg') }}') bottom; background-size: cover" alt="food"></div>
                 <div class="container">
-                    <div class="carousel-caption text-dark">
+                    <div class="carousel-caption ">
                         <h1>Another example headline.</h1>
                         <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
                         <p><a class="btn btn-lg btn-primary" href="#" role="button">Menu</a></p>
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="food">
+                <img src=" https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="food">
                 <div class="container">
                     <div class="carousel-caption text-right">
                         <h1>One more for good measure.</h1>

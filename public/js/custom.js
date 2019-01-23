@@ -24,6 +24,47 @@ $('a[data-toggle="modal"]').on('click', function () {
     return false;
 });
 
+if ($('#reservation-chart').length > 0) {
+    var ctx = document.getElementById("reservation-chart").getContext('2d');
+    console.log($('#reservation-chart').attr('data-content').split(','));
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [
+                "Januari",
+                "Februari",
+                "Maart",
+                "April",
+                "Mei",
+                "Juni",
+                "Juli",
+                "Augustus",
+                "September",
+                "Oktober",
+                "November",
+                "December"
+            ],
+            datasets: [{
+                label: 'aantal reserveringen',
+                data: $('#reservation-chart').attr('data-content').split(','),
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255,99,132,1)',
+                borderWidth: 1,
+                fill: true
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+}
+
 $('.date-range').daterangepicker({
     "locale": {
         "format": 'YYYY/MM/DD',

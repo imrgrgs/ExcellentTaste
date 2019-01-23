@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Reservation;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -39,8 +40,8 @@ class ProfileController extends Controller
              'address' => 'required',
              'postal' => 'required',
              'city' => 'required',
-             'email' => 'required|regex:/^(?=.*?[@])$/',
-             'phone' => 'required|numeric|size:8',
+             'email' => 'required|email',
+             'phone' => 'required|string|max:10',
 
         ]);
 
@@ -76,7 +77,7 @@ class ProfileController extends Controller
         $user->save();
 
 
-        return redirect()->route('profile')->with('success','Uw wachtwoord is opgeslagen');;
+        return redirect()->route('profile')->with('success','Uw wachtwoord is opgeslagen');
     }
 
     public function delete()
@@ -96,8 +97,20 @@ class ProfileController extends Controller
 
         $user->save();
         $user->delete();
-        // Session::flash('success', 'Gebruiker verwijderd');
-        return redirect()->route('home')->with('success','Gebruiker verwijderd');;
+
+        return redirect()->route('home')->with('success','Gebruiker verwijderd');
+
+    }
+
+    public function reservationDelete(Reservation $reservation)
+    {
+        if (auth()->user()->id===$reservation->user->id){
+            $reservation->delete();
+
+            return redirect()->route('profile')->with('success','Reservering verwijderd');
+        }else{
+            return redirect()->route('profile')->with('error',['Kan de reservering niet verwijderen']);
+        }
 
     }
 }
