@@ -15,6 +15,9 @@ class NotaController extends Controller
         if (!file_exists(storage_path('app/public/notas'))) {
             mkdir(storage_path('app/public/notas'));
         }
+        $reservation->nota = true;
+        $reservation->save();
+
         return PDF::loadView('pdf.nota', $data)->save(storage_path('app/public/notas/'.$reservation->number.'.pdf'))->stream($reservation->number.'.pdf');
     }
 }

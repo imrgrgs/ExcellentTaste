@@ -22,7 +22,7 @@
                     </h3>
                     <form method="post" action="{{ url('reservations/search') }}" class="row">
                         @csrf
-                        <input class="date-range col-lg-3 form-control margin-15" type="text" name="range" value="{{ $search['range'] ? $search['range'] : '' }}" />
+                        <input class="date-range col-lg-3 form-control margin-15" type="text" name="range" value="{{ $search['range'] ? $search['range'] : '' }}"/>
                         <input class="col-lg-3 form-control margin-15" type="text" name="last_name" placeholder="Achternaam" value="{{ $search['last_name'] ? $search['last_name'] : '' }}">
                         <input class="col-lg-3 form-control margin-15" type="text" name="number" placeholder="Reservering nummer" value="{{ $search['number'] ? $search['number'] : '' }}">
                     </form>
@@ -49,7 +49,13 @@
                                 <td>{{ $reservation->tables->first()->start_time }}</td>
                                 <td>{{ $reservation->tables->first()->end_time }}</td>
                                 <td class="text-truncate">{{ $reservation->diet }}</td>
-                                <td><i class="fa fa-download"></i></td>
+                                <td>
+                                    @if(!request()->is('*/inactive'))
+                                        <a href="{{ url('reservations/'.$reservation->id.'/generate-nota') }}"><i class="fa fa-download"></i></a>
+                                    @else
+                                        <a href="{{ url('reservations/'.$reservation->id.'/download') }}"><i class="fa fa-download"></i></a>
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     </table>

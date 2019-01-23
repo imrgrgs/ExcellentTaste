@@ -18,9 +18,9 @@ class ReservationsController extends Controller
         $view = view('portal.reservations.index');
 
         $view->search = $search;
-        $view->reservations = Reservation::when(($status != 'active'), function ($q) {
-//            $q->whereHas('nota');
-        })->when($search['number'], function ($q, $number) {
+
+        $view->reservations = Reservation::where('nota', $status != 'active' ? true : null)
+        ->when($search['number'], function ($q, $number) {
             $q->where('number', 'like', '%' . $number . '%');
         })->when($search['last_name'], function ($q, $name) {
             $q->whereHas('user', function ($q) use ($name) {
