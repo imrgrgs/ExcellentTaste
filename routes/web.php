@@ -35,18 +35,15 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         $get->get('{status?}', 'ReservationsController@index')->middleware('role:administrator');
     });
 
-    Route::group(['middleware' => ['auth', 'role:employee|administrator']], function () {
+    Route::group(['middleware' => ['auth', 'role:employee']], function () {
         
         Route::group(['prefix' => 'orders', 'as' => 'orders'], function () {
             Route::get('/', 'OrdersController@index');
             Route::get('/create', 'OrdersController@create');
             Route::post('/create', 'OrdersController@store');
-
-            Route::group(['middleware' => ['auth', 'role:administrator']], function () {
-                Route::post('/delete', 'OrdersController@destroy');
-                Route::get('/{id}/edit', 'OrdersController@edit');
-                Route::post('/{id}/update', 'OrdersController@update');
-            });
+            Route::post('/delete', 'OrdersController@destroy');
+            Route::get('/{id}/edit', 'OrdersController@edit');
+            Route::post('/{id}/update', 'OrdersController@update');
         });
     });
 
@@ -76,9 +73,4 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             $get->get('excluded-tables', 'TablesController@excluded');
         });
     });
-
-    // employee routes
-    Route::group(['middleware' => ['auth', 'role:employee']], function () {
-    });
-
 });

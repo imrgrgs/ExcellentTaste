@@ -32,6 +32,7 @@
         <div class="col-lg-6">
             <div class="card">
                 <form method="POST" action="/orders/create" enctype="multipart/form-data">
+                    @csrf
                     <div class="card-header px-4">Bestelling</div>
                     <div class="card-body order" id="orders"></div>
                     <div class="form-group row">
@@ -47,7 +48,7 @@
             <div class="card">
                 <div class="card-header px-4">Producten</div>
                 @foreach($products as $product)
-                    <div class="card-body border-bot products" id="{{$product->id}}">{{$product->name}}
+                    <div class="card-body border-bot products" id="{{$product->id}}"><span>{{$product->name}}</span>
                         <a data-target="{{$product->id}}"><i class="fas fa-plus-square fa-2x pull-right"></i></a>
                     </div>
                 @endforeach
