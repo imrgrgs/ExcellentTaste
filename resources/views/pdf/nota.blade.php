@@ -13,9 +13,9 @@
             <li>{{ $reservation->user->phone }}</li>
         </ul>
         <ul>
-            <li>Excelent Taste</li>
+            <li>Excellent Taste</li>
             <li>Grote Markt 12, 8011 LW ZWOLLE</li>
-            <li>06-346434</li>
+            <li>0591-272012</li>
         </ul>
         <ul>
             <li>Datum: {{ $reservation->date_string }}</li>
@@ -23,11 +23,23 @@
             <li>Start: {{ $reservation->tables->first()->end_time }}</li>
         </ul>
         <table>
+            <thead>
+                <tr>
+                    <td>Product</td>
+                    <td>Hoeveelheid</td>
+                    <td>Betaalt</td>
+                </tr>
+            </thead>
             @foreach($reservation->orders as $order)
                 <tr>
-                    <td></td>
+                    @foreach($order->products as $product)
+                        <td>{{ $product->name }}</td><td>{{ $product->pivot->amount }}</td><td>{{ $product->pivot->payed }}</td>
+                    @endforeach
                 </tr>
             @endforeach
+            <tr>
+                <td colspan="2">totaal:</td><td>{{ $reservation->total_price }}</td>
+            </tr>
         </table>
     </body>
 </html>

@@ -23,6 +23,20 @@ class Reservation extends Model
         return Carbon::parse($this->date)->format('d-m-Y');
     }
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function getTotalPriceAttribute()
+    {
+        $total = 0;
+        foreach ($this->orders as $order) {
+            $total += $order->products->sum('pivot.payed');
+        }
+        return $total;
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
