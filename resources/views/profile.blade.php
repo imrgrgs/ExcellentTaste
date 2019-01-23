@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="col-md-6 mt-2">
                                     <div class="g-recaptcha"
-                                         data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}">
+                                            data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}">
                                     </div>
                                 </div>
                                 <div class="col-md-8">
@@ -102,8 +102,8 @@
                 <div class="card mt-3">
                     <div class="card-body">
                         <h5 class="card-title">Mijn reserveringen</h5>
-                       <table class="table table-striped">
-                           <thead>
+                        <table class="table table-striped">
+                            <thead>
                             <tr>
                                 <td>
                                     Datum
@@ -160,35 +160,33 @@
                                    <a href="/profile/{{$reservation->id}}/delete" class="btn btn-danger" onclick="return confirm('Weet u zeker dat u uw reservering wilt verwijderen?');" id="">Verwijderen</a>
                                </td>
                            </tr>
-                               @endforeach
+                            @endforeach
                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-            <script type="text/javascript">
-                $('#submit').hide()
-                $("#editform").click(function () {
-                    if ($(this).attr('data-edit') === 'false') {
-                        $('input').removeClass("form-control-plaintext").prop('readonly', false).addClass('form-control');
-                        $(this).attr('data-edit', 'true');
-                        $('#submit').toggle()
-                        $('#editform').toggle()
-                    }
-                });
-                $("#submit").click(function () {
-                    {
-                        $('input').addClass("form-control-plaintext").prop('readonly', true).removeClass('form-control');
-                        $("#editform").attr('data-edit', 'false');
-                        $('#submit').toggle()
-                        $('#editform').toggle()
-                    }
-                });
-            </script>
-            <script>
-                $(document).ready(function(){
-                    $('[data-toggle="tooltip"]').tooltip();
-                });
-            </script>
+@stop
+@section('scripts')
+    <script type="text/javascript">
+        $('#submit').hide()
+        $("#editform").click(function () {
+            if ($(this).attr('data-edit') === 'false') {
+                $('input').removeClass("form-control-plaintext").prop('readonly', false).addClass('form-control');
+                $(this).attr('data-edit', 'true');
+                $('#submit').toggle()
+                $('#editform').toggle()
+            }
+        });
+        $("#submit").click(function () {
+            {
+                $('input').addClass("form-control-plaintext").prop('readonly', true).removeClass('form-control');
+                $("#editform").attr('data-edit', 'false');
+                $('#submit').toggle()
+                $('#editform').toggle()
+            }
+        });
+        $('[data-toggle="tooltip"]').tooltip();
+    </script>
 @stop

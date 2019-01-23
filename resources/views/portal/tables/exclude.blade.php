@@ -31,10 +31,8 @@
             @foreach($groups as $key => $group)
                 <div class="col-lg-4 mt-3 justify-content-center">
                     <div class="card h-100">
-                        <div class="card-header">
-                            Tafel van {{ $key }}
-                        </div>
                         <div class="card-body">
+                            <h5 class="card-title">Tafel van {{ $key }}</h5>
                             @foreach($group as $table)
                                 <div class="row">
                                     <label for="{{ $table->id }}" class="col-sm-4 col-form-label">{{ $table->id }}</label>

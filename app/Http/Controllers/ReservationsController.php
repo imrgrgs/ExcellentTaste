@@ -56,7 +56,7 @@ class ReservationsController extends Controller
         }
         $request->validate($rules);
 
-        $user = $request->exists('customer_id') ? User::find($request->get('customer_id')) : auth()->user();
+        $user = !is_null($request->get('customer_id')) ? User::find($request->get('customer_id')) : auth()->user();
 
         $date = str_replace('/', '-', $request->get('date'));
 

@@ -51,7 +51,7 @@
                             <label for="customer" class="col-sm-2 col-form-label">Gasten</label>
                             <div class="col-sm-10">
                                 <select id="customer" class="select form-control" name="customer_id">
-                                    <option>Kies een optie..</option>
+                                    <option value="">Kies een optie..</option>
                                     @foreach($customers as $customer)
                                         <option value="{{ $customer->id }}">{{ $customer->name }}</option>
                                     @endforeach
@@ -94,10 +94,11 @@
             $(this).find(':selected').each(function () {
                 chairs = chairs + parseInt($(this).attr('data-content'));
             });
-
-            if (chairs > 8) {
-                $('#seat').addClass('text-danger')
-            }
+            @if(!auth()->user()->hasRole('administrator'))
+                if (chairs > 8) {
+                    $('#seat').addClass('text-danger')
+                }
+            @endif
             $('#seat').val(chairs)
         });
         $('#start_time,#date').on('change', function () {

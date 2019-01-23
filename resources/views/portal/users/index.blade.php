@@ -2,12 +2,11 @@
 
 @section('content')
 
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card">
-            <div class="card-header px-4">Gebruikers <span><a href="/users/create"><i class="la la-plus-circle la-2x pull-right"></i></a></span></div>
-
+<div class="container">
+    <div class="row">
+        <div class="card w-100 mt-5">
             <div class="card-body">
+                <h3 class="card-title">Gebruikers</h3>
                 <form method="POST" onsubmit="ConfirmDelete()" action="/users/delete/" enctype="multipart/form-data">
                     {{ csrf_field('DELETE') }}
                     <table class="table table-striped table-hover">
@@ -19,11 +18,11 @@
                             <th>Achternaam</th>
                             <th>Plaats</th>
                             <th>Telefoon</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
                         	@foreach($users as $user)
-                                {{-- @if(empty($user->delete()ted_at)) --}}
                             		<tr>
                             			<td>
                             				<a href="/users/{{ $user->id }}/edit">{{$user->id}}</a>
@@ -39,13 +38,11 @@
                                             </button>
                                         </td>
                             		</tr>
-                               {{--  @else
-
-                                @endif --}}
                         	@endforeach
                         </tbody>
                     </table>
                 </form>
+                {{ $users->links() }}
             </div>
         </div>
     </div>
