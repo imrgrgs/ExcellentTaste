@@ -2,12 +2,11 @@
 
 @section('content')
 
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card">
-            <div class="card-header px-4">Producten <span class="pull-right"><a href="/products/create"><i class="fas fa-plus-circle fa-2x"></i></a></span></div>
-
-            <div class="card-body">
+    <div class="container">
+        <div class="row">
+            <div class="card w-100 mt-5">
+                <div class="card-body">
+                    <div class="row"><h3 class=" card-title col-lg-6">Producten</h3><span class="col-lg-6 text-right"><a href="/products/create"><i class="fas fa-plus-circle fa-2x"></i></a></span></div>
                 <form method="POST" onsubmit="ConfirmDelete()" action="/products/delete/" enctype="multipart/form-data">
                     {{ csrf_field('DELETE') }}
                     <table class="table table-striped table-hover">

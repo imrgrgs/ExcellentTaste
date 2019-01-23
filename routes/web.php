@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 Route::get('/menu', 'MenuController@index')->name('menu');
+Route::get('/contact', 'ContactController@index')->name('contact');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
@@ -26,8 +27,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/profile/delete', 'ProfileController@delete');
     Route::get('/profile/{reservation}/delete', 'ProfileController@reservationdelete');
     Route::get('tables/excluded', 'TablesController@excludesJson');
-
-    Route::get('/contact', 'ContactController@index')->name('contact');
 
     Route::group(['prefix' => 'reservations'], function ($get) {
         $get->get('create', 'ReservationsController@create');
