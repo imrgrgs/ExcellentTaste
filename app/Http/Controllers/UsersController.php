@@ -16,7 +16,7 @@ class UsersController extends Controller
     public function index()
     {
         $view = view('portal.users.index');
-        $view->users = User::all();
+        $view->users = User::paginate(25);
 
         return $view;
     }
