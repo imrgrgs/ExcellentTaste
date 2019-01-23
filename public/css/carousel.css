@@ -1,24 +1,44 @@
-/* GLOBAL STYLES
--------------------------------------------------- */
-
 body {
   color: #cdcdcd;
+  overflow-x: hidden;
 }
 
+/* remove margin from bootstrap's contaier */
 
-/* CUSTOMIZE THE CAROUSEL
--------------------------------------------------- */
+.container-fluid {
+  padding-right: 0;
+  padding-left: 0;
+}
 
+.col-md-12{
+  padding-left: 0;
+  padding-right: 0;
+}
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
   bottom: 3rem;
   z-index: 10;
 }
 
+/* Static text over the carousel */
+.main-text {
+  position: absolute;
+  width: 100%;
+  top:0;
+
+}
+
+.main-text div {
+  padding-top:10em;
+}
+
+.main-text >div>h1{
+  color:#fff;
+}
+
 /* Declare heights because of positioning of img element */
 .carousel-item {
-  /*height: 32rem;*/
-  height:100vh;
+  height:60vh;
 }
 .carousel-item > img {
   position: absolute;
