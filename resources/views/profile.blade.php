@@ -124,6 +124,9 @@
                                     Reserveringsnr.
                                 </td>
                                 <td>
+                                    Nota downloaden
+                                </td>
+                                <td>
                                     &nbsp;
                                 </td>
                             </tr>
@@ -149,6 +152,9 @@
                                </td>
                                <td>
                                    {{$reservation->number}}
+                               </td>
+                               <td>
+                                   <a href="/reservations/{{$reservation->number}}/download-nota">{{$reservation->number}}.pdf</a>
                                </td>
                                <td>
                                    <a href="/profile/{{$reservation->id}}/delete" class="btn btn-danger" onclick="return confirm('Weet u zeker dat u uw reservering wilt verwijderen?');" id="">Verwijderen</a>

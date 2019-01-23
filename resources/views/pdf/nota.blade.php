@@ -20,7 +20,7 @@
         <ul>
             <li>Datum: {{ $reservation->date_string }}</li>
             <li>Start: {{ $reservation->tables->first()->start_time }}</li>
-            <li>Start: {{ $reservation->tables->first()->end_time }}</li>
+            <li>Eind: {{ $reservation->tables->first()->end_time }}</li>
         </ul>
         <table>
             <thead>

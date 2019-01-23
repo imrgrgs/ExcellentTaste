@@ -20,4 +20,13 @@ class NotaController extends Controller
 
         return PDF::loadView('pdf.nota', $data)->save(storage_path('app/public/notas/'.$reservation->number.'.pdf'))->stream($reservation->number.'.pdf');
     }
+
+    public function download($reservation)
+    {
+        if (is_file(storage_path('app/public/notas/'. $reservation .'.pdf'))) {
+            return response()->download(storage_path('app/public/notas/' . $reservation . '.pdf'));
+        }
+
+        return redirect()->route('profile')->with('error', 'De nota is nog niet beschikbaar');
+    }
 }

@@ -38,3 +38,21 @@
         });
     </script>
 @endif
+
+@if(session()->has('error'))
+    <script>
+        $(document).ready(function () {
+            new PNotify({
+                title: 'Error',
+                text: `{{session()->get('error')}}`,
+                type: 'error',
+                animate: {
+                    animate: true,
+                    in_class: 'bounceInLeft',
+                    out_class: 'bounceOutRight'
+                }
+            });
+        });
+    </script>
+@endif
+
