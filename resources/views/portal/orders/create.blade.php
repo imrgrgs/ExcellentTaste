@@ -32,6 +32,7 @@
         <div class="col-lg-6">
             <div class="card">
                 <form method="POST" action="/orders/create" enctype="multipart/form-data">
+                    @csrf
                     <div class="card-header px-4">Bestelling</div>
                     <div class="card-body order" id="orders"></div>
                     <div class="form-group row">
