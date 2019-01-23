@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::group(['prefix' => 'reservations'], function ($get) {
         $get->get('create', 'ReservationsController@create');
         $get->post('create', 'ReservationsController@save');
+        $get->get('{reservation}/generate-nota', 'NotaController@generate')->middleware('role:administrator');
         $get->post('search', 'ReservationsController@search')->middleware('role:administrator');
         $get->get('{status?}', 'ReservationsController@index')->middleware('role:administrator');
     });
