@@ -48,7 +48,7 @@
             <div class="card">
                 <div class="card-header px-4">Producten</div>
                 @foreach($products as $product)
-                    <div class="card-body border-bot products" id="{{$product->id}}">{{$product->name}}
+                    <div class="card-body border-bot products" id="{{$product->id}}"><span>{{$product->name}}</span>
                         <a data-target="{{$product->id}}"><i class="fas fa-plus-square fa-2x pull-right"></i></a>
                     </div>
                 @endforeach
