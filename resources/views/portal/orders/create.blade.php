@@ -31,9 +31,15 @@
         {{ csrf_field() }}
         <div class="col-lg-6">
             <div class="card">
-                <div class="card-header px-4">Bestelling</div>
-                    <div class="card-body order" id="orders">
+                <form method="POST" action="/orders/create" enctype="multipart/form-data">
+                    <div class="card-header px-4">Bestelling</div>
+                    <div class="card-body order" id="orders"></div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-success" id="save-but">Opslaan</button>
+                        </div>
                     </div>
+                </form> 
             </div>
         </div>
         {{-- right side --}}
