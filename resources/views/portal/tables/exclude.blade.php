@@ -33,6 +33,7 @@
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">Tafel van {{ $key }}</h5>
+                            <hr>
                             @foreach($group as $table)
                                 <div class="row">
                                     <label for="{{ $table->id }}" class="col-sm-4 col-form-label">{{ $table->id }}</label>
