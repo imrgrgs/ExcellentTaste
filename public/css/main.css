@@ -31,3 +31,19 @@
 .pull-right{
 	float:right;
 }
+
+.border-bot{
+	border-bottom: 1px #e3e3e3 solid;
+}
+
+.fa-times-circle{
+	color: red;
+}
+
+.fa-plus-square{
+	color:green;
+}
+
+#save-but{
+	margin-left: 15px;
+}

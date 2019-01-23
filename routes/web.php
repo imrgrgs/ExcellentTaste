@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Auth::routes(['verify' => true]);
+Route::get('/menu', 'MenuController@index')->name('menu');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
@@ -25,9 +26,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/profile/delete', 'ProfileController@delete');
     Route::get('/profile/{reservation}/delete', 'ProfileController@reservationdelete');
     Route::get('tables/excluded', 'TablesController@excludesJson');
-
-    Route::get('/menu', 'MenuController@index')->name('menu');
-    Route::post('/menu', 'MenuController@store');
 
     Route::get('/contact', 'ContactController@index')->name('contact');
 
@@ -41,14 +39,14 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::group(['middleware' => ['auth', 'role:employee|administrator']], function () {
         
         Route::group(['prefix' => 'orders', 'as' => 'orders'], function () {
-            Route::get('/', 'OrderController@index');
-            Route::get('/create', 'OrderController@create');
-            Route::post('/create', 'OrderController@store');
+            Route::get('/', 'OrdersController@index');
+            Route::get('/create', 'OrdersController@create');
+            Route::post('/create', 'OrdersController@store');
 
             Route::group(['middleware' => ['auth', 'role:administrator']], function () {
-                Route::post('/delete', 'OrderController@destroy');
-                Route::get('/{id}/edit', 'OrderController@edit');
-                Route::post('/{id}/update', 'OrderController@update');
+                Route::post('/delete', 'OrdersController@destroy');
+                Route::get('/{id}/edit', 'OrdersController@edit');
+                Route::post('/{id}/update', 'OrdersController@update');
             });
         });
     });

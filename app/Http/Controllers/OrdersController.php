@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Order;
+use App\Product;
+use App\Reservation;
 
 class OrdersController extends Controller
 {
@@ -13,7 +16,7 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        //
+        return view('portal.orders.index');
     }
 
     /**
@@ -23,7 +26,11 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all();
+        $reservations = Reservation::all();
+        $devices = ["Device 1", "Device 2", "Device 3"];
+        // dd($products);
+        return view('portal.orders.create', compact('products', 'reservations', 'devices'));
     }
 
     /**
