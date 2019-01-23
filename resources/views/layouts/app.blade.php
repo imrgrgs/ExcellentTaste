@@ -60,7 +60,7 @@
                                     <li class="nav-item disabled border-secondary border-bottom mt-4">
                                         <span class="nav-link pl-0 d-none d-md-inline">Beheer</span>
                                     </li>
-                                    <li class="nav-item {{ request()->is('reservations*') ? 'active' : '' }}">
+                                    <li class="nav-item {{ request()->is('reservations') ? 'active' : '' }}">
                                         <a class="nav-link pl-0" href="{{ url('reservations/') }}"><i class="fas fa-archive"></i>
                                             <span class="d-none d-md-inline">Reserveringen</span>
                                         </a>
@@ -70,7 +70,7 @@
                                             <span class="d-none d-md-inline">Gebruikers</span>
                                         </a>
                                     </li>
-                                    <li class="nav-item {{ request()->is('products/*') ? 'active' : '' }}">
+                                    <li class="nav-item {{ request()->is('products*') ? 'active' : '' }}">
                                         <a class="nav-link pl-0" href="{{ url('products/') }}"><i class="fas fa-barcode"></i>
                                             <span class="d-none d-md-inline">Producten</span>
                                         </a>

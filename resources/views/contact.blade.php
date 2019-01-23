@@ -14,7 +14,7 @@
             <img src="https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" alt="hamburger">
         </div>
     </div>
-    <div class="container">
+    <div class="container text-black-50">
         <div class="row" style="margin-top: -663px;">
             <div class="col-sm-6">
                 <div class="card">
