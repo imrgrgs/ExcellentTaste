@@ -64,6 +64,7 @@
                         <h5 class="card-title">Wachtwoord wijzigen</h5>
                         <form method="post" action="/profile/password" class="col-md-12">
                             @csrf
+                            <input type="text" class="d-none" name="number" value="{{ auth()->user()->number }}">
                             <div class="row">
                                 <label for="seat" class="col-sm-6 col-form-label">Nieuw wachtwoord</label>
                                 <div class="col-sm-6">
@@ -154,7 +155,11 @@
                                    {{$reservation->number}}
                                </td>
                                <td>
-                                   <a href="/reservations/{{$reservation->number}}/download-nota">{{$reservation->number}}.pdf</a>
+                                   @if(file_exists(storage_path('app/public/notas/'.$reservation->number.'.pdf')))
+                                        <a href="/reservations/{{$reservation->number}}/download-nota">{{$reservation->number}}.pdf</a>
+                                   @else
+
+                                   @endif
                                </td>
                                @if($reservation->nota === 'false')
                                <td>

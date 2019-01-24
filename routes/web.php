@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         $get->get('create', 'ReservationsController@create');
         $get->post('create', 'ReservationsController@save');
         $get->get('{reservation}/generate-nota', 'NotaController@generate')->middleware('role:administrator|employee');
-        $get->get('{reservation}/download-nota', 'NotaController@download')->middleware('role:administrator|employee');
+        $get->get('{reservation}/download-nota', 'NotaController@download');
         $get->post('search', 'ReservationsController@search')->middleware('role:administrator');
         $get->get('{status?}', 'ReservationsController@index')->middleware('role:administrator|employee');
     });

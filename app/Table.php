@@ -19,11 +19,11 @@ class Table extends Model
 
     public function getStartTimeAttribute()
     {
-        return Carbon::parse($this->pivot->start)->format('H:m');
+        return Carbon::parse($this->pivot->start)->format('H:i');
     }
 
     public function getEndTimeAttribute()
     {
-        return Carbon::parse($this->pivot->end)->format('H:m');
+        return Carbon::parse($this->pivot->end)->format('H:i');
     }
 }

@@ -50,10 +50,12 @@
                                 <td>{{ $reservation->tables->first()->end_time }}</td>
                                 <td class="text-truncate">{{ $reservation->diet }}</td>
                                 <td>
-                                    @if(!request()->is('*/inactive'))
-                                        <a href="{{ url('reservations/'.$reservation->id.'/generate-nota') }}"><i class="fa fa-download"></i></a>
-                                    @else
-                                        <a href="{{ url('reservations/'.$reservation->id.'/download') }}"><i class="fa fa-download"></i></a>
+                                    @if(\Carbon\Carbon::now() < $reservation->tables->first()->end_time && \Carbon\Carbon::now() > $reservation->tables->first()->start_time)
+                                        @if(!request()->is('*/inactive'))
+                                            <a href="{{ url('reservations/'.$reservation->id.'/generate-nota') }}"><i class="fa fa-download"></i></a>
+                                        @else
+                                            <a href="{{ url('reservations/'.$reservation->number.'/download-nota') }}"><i class="fa fa-download"></i></a>
+                                        @endif
                                     @endif
                                 </td>
                             </tr>
