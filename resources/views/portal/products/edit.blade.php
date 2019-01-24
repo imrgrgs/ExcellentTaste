@@ -28,7 +28,7 @@
                         <div class="form-group row">
                             <label for="inputPrice" class="col-sm-2 col-form-label">Prijs</label>
                             <div class="col-sm-10"> 
-                                <input type="text" class="form-control" name="price" value="{{ $product->price }}">
+                                <input type="text" class="form-control" name="price" value="{{ number_format($product->price, 2, ',', '.') }}">
                             </div>
                         </div>
 
