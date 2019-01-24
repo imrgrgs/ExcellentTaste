@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Order;
 use App\Product;
@@ -27,25 +28,38 @@ class OrdersController extends Controller
     public function create()
     {
         $products = Product::all();
-        $reservations = Reservation::whereNull('nota')->get();
+
+        $reservations = Reservation::whereNull('nota')->whereHas('tables', function ($q) {
+            $q->where('start', '<', Carbon::now());
+        })->get();
+
         $devices = [
             ['id' => 1, 'name' => 'Device 1'],
             ['id' => 2, 'name' => 'Device 2'],
             ['id' => 3, 'name' => 'Device 3']
         ];
+
+        if ($reservations->first() === null)
+        {
+            return redirect()->back()->with('error', 'Er zijn nog geen reserveringen om een bestelling voor te maken');
+        }
+
         return view('portal.orders.create', compact('products', 'reservations', 'devices'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        if (!$request->products)
-        {
+        $request->validate([
+            'reservation_id'=> 'required'
+        ]);
+
+        if (!$request->products) {
             return redirect()->back()->with('error', 'De bestelling bevat geen producten');
         }
 
@@ -58,8 +72,7 @@ class OrdersController extends Controller
 
         $products = [];
 
-        foreach ($request->products as $id => $amount)
-        {
+        foreach ($request->products as $id => $amount) {
             $price = Product::CalculatePrice($id, $amount);
             $products[$id] = ['amount' => $amount, 'payed' => $price];
         }
@@ -72,7 +85,7 @@ class OrdersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -83,7 +96,7 @@ class OrdersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -94,8 +107,8 @@ class OrdersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -106,7 +119,7 @@ class OrdersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
