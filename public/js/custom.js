@@ -129,9 +129,9 @@ function getExcludedTables() {
         };
     }
     $.get('/tables/excluded', options).then(function (res) {
-        $('#tables option').prop('disabled', false);
+        $('#tables option').prop('disabled', false).removeClass('text-danger');
         $.each(res, function (id) {
-            $('#table_' + res[id]).attr('disabled', true);
+            $('#table_' + res[id]).attr('disabled', true).addClass('text-danger');
         });
     })
 }

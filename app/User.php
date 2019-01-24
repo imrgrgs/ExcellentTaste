@@ -34,8 +34,6 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
     protected $dates = ['deleted_at'];
 
-    protected $maxAttempts = 3;
-
     /**
      * Send the email verification notification.
      *
