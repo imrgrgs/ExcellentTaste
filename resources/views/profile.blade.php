@@ -131,48 +131,46 @@
                                     &nbsp;
                                 </td>
                             </tr>
-                           </thead>
-                           @foreach($user->reservations as $reservation)
-                           <tr>
-                               <td>
-                                   {{$reservation->date_string}}
-                               </td>
-                               <td>
-                                   {{$reservation->tables->first()->start_time}} - {{$reservation->tables->first()->end_time}}
-                               </td>
-                               <td>
-                                   {{$reservation->tables->first()->id}}
-                               </td>
-                               <td>
-                                   {{$reservation->tables->first()->seat_count}}
-                               </td>
-                               <td>
+                            </thead>
+                            @foreach($user->reservations as $reservation)
+                                <tr>
+                                    <td>
+                                        {{$reservation->date_string}}
+                                    </td>
+                                    <td>
+                                        {{$reservation->tables->first()->start_time}} - {{$reservation->tables->first()->end_time}}
+                                    </td>
+                                    <td>
+                                        {{$reservation->tables->first()->id}}
+                                    </td>
+                                    <td>
+                                        {{$reservation->tables->first()->seat_count}}
+                                    </td>
+                                    <td>
                                    <span class="d-inline-block text-truncate" style="max-width: 150px;">
                                        <span data-toggle="tooltip" data-placement="bottom" title="{{$reservation->diet}}"> {{$reservation->diet}}</span>
                                    </span>
-                               </td>
-                               <td>
-                                   {{$reservation->number}}
-                               </td>
-                               <td>
-                                   @if(file_exists(storage_path('app/public/notas/'.$reservation->number.'.pdf')))
-                                        <a href="/reservations/{{$reservation->number}}/download-nota">{{$reservation->number}}.pdf</a>
-                                   @else
+                                    </td>
+                                    <td>
+                                        {{$reservation->number}}
+                                    </td>
+                                    <td>
+                                        @if(file_exists(storage_path('app/public/notas/'.$reservation->number.'.pdf')))
+                                            <a href="/reservations/{{$reservation->number}}/download-nota">{{$reservation->number}}.pdf</a>
+                                        @endif
+                                    </td>
+                                    @if($reservation->nota === 1)
+                                        <td>
 
-                                   @endif
-                               </td>
-                               @if($reservation->nota === null)
-                               <td>
-                                   <a href="/profile/{{$reservation->id}}/delete" class="btn btn-danger" onclick="return confirm('Weet u zeker dat u uw reservering wilt verwijderen?');" id="">Verwijderen</a>
-                               </td>@else
-                                   <td>
+                                        </td>@else
+                                        <td>
+                                            <a href="/profile/{{$reservation->id}}/delete" class="btn btn-danger" onclick="return confirm('Weet u zeker dat u uw reservering wilt verwijderen?');" id="">Verwijderen</a>
+                                        </td>
 
-                                   </td>
-
-                                   @endif
-                           </tr>
+                                    @endif
+                                </tr>
                             @endforeach
-                       </table>
+                        </table>
                     </div>
                 </div>
             </div>
