@@ -53,7 +53,7 @@ class ProductsController extends Controller
 
         $product->name = $request->name;
         $product->description = $request->description;
-        $product->price = $request->price;
+        $product->price = str_replace(',', '.', $request->price);
         $product->category_id = $request->get('category_id');
         $product->save();
 
@@ -91,7 +91,7 @@ class ProductsController extends Controller
         $product = Product::find($id);
         $product->name = $request->name;
         $product->description = $request->description;
-        $product->price = $request->price;
+        $product->price = str_replace(',', '.', $request->price);
         $product->save();
         return redirect('/products/' . $id . '/edit')->with('success','Product geupdate');
     }

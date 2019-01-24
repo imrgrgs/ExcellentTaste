@@ -26,7 +26,7 @@
                             			</td>
                             			<td>{{$product->name}}</td>
                             			<td>{{$product->description}}</td>
-                            			<td>{{$product->price}}</td>
+                            			<td>€ {{number_format($product->price, 2, ',', '.')}}</td>
                                         <td>
                                             <button type="submit" name="id" class="btn btn-danger" value="{{ $product->id }}">Delete
                                             </button>
