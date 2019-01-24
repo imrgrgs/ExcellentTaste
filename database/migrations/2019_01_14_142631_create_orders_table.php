@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('device');
+            $table->integer('device_id');
             $table->integer('reservation_id')->unsigned();
             $table->foreign('reservation_id')->references('id')->on('reservations');
             $table->timestamps();
