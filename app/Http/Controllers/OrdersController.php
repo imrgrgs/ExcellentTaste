@@ -33,6 +33,12 @@ class OrdersController extends Controller
             ['id' => 2, 'name' => 'Device 2'],
             ['id' => 3, 'name' => 'Device 3']
         ];
+
+        if ($reservations->first() === null)
+        {
+            return redirect()->back()->with('error', 'Er zijn nog geen reserveringen om een bestelling voor te maken');
+        }
+
         return view('portal.orders.create', compact('products', 'reservations', 'devices'));
     }
 
