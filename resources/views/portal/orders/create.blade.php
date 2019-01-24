@@ -3,36 +3,32 @@
 @section('content')
 <script src="{{ asset('js/order.js') }}" defer></script>
 <div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Reservering</label>
-                    <select class="form-control select">
-                    @foreach($reservations as $reservation)
-                        <option>{{$reservation->number}}</option>
-                    @endforeach
-                </select>
-              </div>
-        </div>
-        <div class="col-md-6">
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Device</label>
-                    <select class="form-control select">
-                    @foreach($devices as $device)
-                        <option>{{$device}}</option>
-                    @endforeach
-                </select>
-              </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid">
     <div class="row">
         {{ csrf_field() }}
         <div class="col-lg-6">
             <div class="card">
                 <form method="POST" action="/orders/create" enctype="multipart/form-data">
                     @csrf
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Reservering</label>
+                            <select class="form-control select" name="reservation_id">
+                                @foreach($reservations as $reservation)
+                                    <option value="{{$reservation->id}}">{{$reservation->number}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Device</label>
+                            <select class="form-control select" name="device_id">
+                                @foreach($devices as $device)
+                                    <option value="{{$device['id']}}">{{$device['name']}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <div class="card-body order" id="orders">
                         <h5 class="card-title">Bestelling</h5>
                         <hr>

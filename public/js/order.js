@@ -15,7 +15,7 @@ $(document).ready(function() {
         }else{
             $output = '<div class="card-body border-bot order" id="order-'+pid+'"><span>'+name+'<span>';
             $output+= '<a data-target="'+pid+'" onclick="deleteProduct('+pid+')"><i class="fas fa-times-circle fa-2x pull-right"></i></a>';
-            $output+= '<input type="text" style="width: 40px;" class="pull-right" value="1"/>';
+            $output+= '<input type="text" style="width: 40px;" class="pull-right" value="1" name="products['+ pid +']"/>';
             $output+= '</div>'
 
             $("#orders").append($output);
