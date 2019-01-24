@@ -5,9 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header px-4">Product wijzigen <span><a href="/users"><i class="la la-backward la-2x pull-right"></i></a></span></div>
-
                 <div class="card-body">
+                    <h3 class="card-title">Product wijzigen</h3>
+                    <hr>
                     <form method="POST" action="/products/{{ $product->id }}/update" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
@@ -34,6 +34,7 @@
 
                         <div class="form-group row">
                             <div class="col-sm-12">
+                                <a class="btn btn-secondary" href="{{ url('/products') }}">Annuleren</a>
                                 <button type="submit" class="btn btn-success">Opslaan</button>
                             </div>
                         </div>	

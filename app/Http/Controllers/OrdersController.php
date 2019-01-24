@@ -27,9 +27,12 @@ class OrdersController extends Controller
     public function create()
     {
         $products = Product::all();
-        $reservations = Reservation::all();
-        $devices = ["Device 1", "Device 2", "Device 3"];
-        // dd($products);
+        $reservations = Reservation::whereNull('nota')->get();
+        $devices = [
+            ['id' => 1, 'name' => 'Device 1'],
+            ['id' => 2, 'name' => 'Device 2'],
+            ['id' => 3, 'name' => 'Device 3']
+        ];
         return view('portal.orders.create', compact('products', 'reservations', 'devices'));
     }
 
@@ -41,7 +44,29 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (!$request->products)
+        {
+            return redirect()->back()->with('error', 'De bestelling bevat geen producten');
+        }
+
+        $order = new Order();
+
+        $order->reservation_id = $request->reservation_id;
+        $order->device_id = $request->device_id;
+
+        $order->save();
+
+        $products = [];
+
+        foreach ($request->products as $id => $amount)
+        {
+            $price = Product::CalculatePrice($id, $amount);
+            $products[$id] = ['amount' => $amount, 'payed' => $price];
+        }
+
+        $order->products()->sync($products);
+
+        return redirect()->back()->with('success', 'De bestelling is toegevoegd');
     }
 
     /**

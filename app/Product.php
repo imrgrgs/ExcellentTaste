@@ -12,4 +12,11 @@ class Product extends Model
     {
         return $this->belongsTo('App\Category');
     }
+
+    public static function CalculatePrice($id, $amount)
+    {
+        $product = Product::find($id)->first();
+
+        return $product->price * $amount;
+    }
 }

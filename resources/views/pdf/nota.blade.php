@@ -31,14 +31,14 @@
                 </tr>
             </thead>
             @foreach($reservation->orders as $order)
-                <tr>
                     @foreach($order->products as $product)
-                        <td>{{ $product->name }}</td><td>{{ $product->pivot->amount }}</td><td>{{ $product->pivot->payed }}</td>
+                    <tr>
+                        <td>{{ $product->name }}</td><td>{{ $product->pivot->amount }}</td><td>€ {{ number_format($product->pivot->payed, 2, ',', '.') }}</td>
+                    </tr>
                     @endforeach
-                </tr>
             @endforeach
             <tr>
-                <td colspan="2">totaal:</td><td>{{ $reservation->total_price }}</td>
+                <td colspan="2">totaal:</td><td>€ {{ number_format($reservation->total_price, 2, ',', '.') }}</td>
             </tr>
         </table>
     </body>

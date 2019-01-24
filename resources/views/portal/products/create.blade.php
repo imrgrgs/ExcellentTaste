@@ -4,11 +4,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header px-4">Product toevoegen<span><a href="/products"><i class="la la-backward la-2x pull-right"></i></a></span>
-                </div>
-
                 <div class="card-body">
-
+                    <h3 class="card-title">Product toevoegen</h3>
+                    <hr>
                     <form method="POST" action="/products/create" enctype="multipart/form-data">
                         @csrf
 
@@ -55,6 +53,7 @@
 
                         <div class="form-group row">
                             <div class="col-sm-12">
+                                <a class="btn btn-secondary" href="{{ url('/products') }}">Annuleren</a>
                                 <button type="submit" class="btn btn-success pull-right">Opslaan</button>
                             </div>
                         </div>
