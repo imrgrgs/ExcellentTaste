@@ -156,9 +156,15 @@
                                <td>
                                    <a href="/reservations/{{$reservation->number}}/download-nota">{{$reservation->number}}.pdf</a>
                                </td>
+                               @if($reservation->nota === 'false')
                                <td>
                                    <a href="/profile/{{$reservation->id}}/delete" class="btn btn-danger" onclick="return confirm('Weet u zeker dat u uw reservering wilt verwijderen?');" id="">Verwijderen</a>
-                               </td>
+                               </td>@else
+                                   <td>
+
+                                   </td>
+
+                                   @endif
                            </tr>
                             @endforeach
                        </table>
