@@ -10,7 +10,7 @@ class NotaController extends Controller
     public function generate(Reservation $reservation)
     {
         $data = [
-            'reservation' => $reservation
+            'reservation' => $reservation->with('orders')->with('user')
         ];
         if (!file_exists(storage_path('app/public/notas'))) {
             mkdir(storage_path('app/public/notas'));
