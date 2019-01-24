@@ -161,7 +161,7 @@
 
                                    @endif
                                </td>
-                               @if($reservation->nota === 'false')
+                               @if($reservation->nota === null)
                                <td>
                                    <a href="/profile/{{$reservation->id}}/delete" class="btn btn-danger" onclick="return confirm('Weet u zeker dat u uw reservering wilt verwijderen?');" id="">Verwijderen</a>
                                </td>@else

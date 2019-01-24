@@ -8,6 +8,10 @@
 	height:100vh;
 }
 
+.select2-container--default .select2-results__option[aria-disabled="true"] {
+	 color: #ff1f00 !important;
+ }
+
 .mt-10 {
 	margin-top: 6rem;
 }
