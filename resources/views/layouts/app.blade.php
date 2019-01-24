@@ -32,66 +32,66 @@
                                     </a>
                                 </li>
                                 @else
-                                <li class="nav-item">
-                                    <a class="nav-link pl-0" href="{{ url('/') }}"><i class="fas fa-home"></i>
-                                        <span class="d-none d-md-inline">Site</span>
-                                    </a>
-                                </li>
-                                @endrole
-                                <li class="nav-item {{ request()->is('profile') ? 'active' : '' }}">
-                                    <a class="nav-link pl-0" href="{{ url('/profile') }}"><i class="fas fa-address-card"></i>
-                                        <span class="d-none d-md-inline">Profiel</span>
-                                    </a>
-                                </li>
-                                @auth
-                                    <li class="nav-item {{ request()->is('reservations/create') ? 'active' : '' }}">
-                                        <a class="nav-link pl-0" href="{{ url('reservations/create') }}"><i class="fas fa-calendar"></i>
-                                            <span class="d-none d-md-inline">Reserveren</span>
-                                        </a>
-                                    </li>
-                                    @role('employee|administrator')
-                                    <li class="nav-item {{ request()->is('orders/create') ? 'active' : '' }}">
-                                        <a class="nav-link pl-0" href="{{ url('orders/create') }}"><i class="fas fa-ticket-alt"></i>
-                                            <span class="d-none d-md-inline">Bestellingen</span>
-                                        </a>
-                                    </li>
-                                    @endrole
-                                    @role('administrator')
-                                    <li class="nav-item disabled border-secondary border-bottom mt-4">
-                                        <span class="nav-link pl-0 d-none d-md-inline">Beheer</span>
-                                    </li>
-                                    <li class="nav-item {{ request()->is('reservations') ? 'active' : '' }}">
-                                        <a class="nav-link pl-0" href="{{ url('reservations/') }}"><i class="fas fa-archive"></i>
-                                            <span class="d-none d-md-inline">Reserveringen</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item {{ request()->is('users*') ? 'active' : '' }}">
-                                        <a class="nav-link pl-0" href="{{ url('users/') }}"><i class="fas fa-users"></i>
-                                            <span class="d-none d-md-inline">Gebruikers</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item {{ request()->is('products*') ? 'active' : '' }}">
-                                        <a class="nav-link pl-0" href="{{ url('products/') }}"><i class="fas fa-barcode"></i>
-                                            <span class="d-none d-md-inline">Producten</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item {{ request()->is('tables/exclude') ? 'active' : '' }}">
-                                        <a class="nav-link pl-0" href="{{ url('tables/exclude') }}"><i class="fas fa-ban"></i>
-                                            <span class="d-none d-md-inline">Tafels uitsluiten</span>
-                                        </a>
-                                    </li>
-                                    @endrole
                                     <li class="nav-item">
-                                        <a class="nav-link pl-0" href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                           document.getElementById('logout-form').submit();"><i class="fas fa-power-off"></i>
-                                            <span class="d-none d-md-inline">Uitloggen</span>
+                                        <a class="nav-link pl-0" href="{{ url('/') }}"><i class="fas fa-home"></i>
+                                            <span class="d-none d-md-inline">Site</span>
                                         </a>
                                     </li>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                @endauth
+                                    @endrole
+                                    <li class="nav-item {{ request()->is('profile') ? 'active' : '' }}">
+                                        <a class="nav-link pl-0" href="{{ url('/profile') }}"><i class="fas fa-address-card"></i>
+                                            <span class="d-none d-md-inline">Profiel</span>
+                                        </a>
+                                    </li>
+                                    @auth
+                                        <li class="nav-item {{ request()->is('reservations/create') ? 'active' : '' }}">
+                                            <a class="nav-link pl-0" href="{{ url('reservations/create') }}"><i class="fas fa-calendar"></i>
+                                                <span class="d-none d-md-inline">Reserveren</span>
+                                            </a>
+                                        </li>
+                                        @role('employee|administrator')
+                                        <li class="nav-item {{ request()->is('orders/create') ? 'active' : '' }}">
+                                            <a class="nav-link pl-0" href="{{ url('orders/create') }}"><i class="fas fa-ticket-alt"></i>
+                                                <span class="d-none d-md-inline">Bestellingen</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item disabled border-secondary border-bottom mt-4">
+                                            <span class="nav-link pl-0 d-none d-md-inline">Beheer</span>
+                                        </li>
+                                        <li class="nav-item {{ request()->is('reservations') ? 'active' : '' }}">
+                                            <a class="nav-link pl-0" href="{{ url('reservations/') }}"><i class="fas fa-archive"></i>
+                                                <span class="d-none d-md-inline">Reserveringen</span>
+                                            </a>
+                                        </li>
+                                        @endrole
+                                        @role('administrator')
+                                        <li class="nav-item {{ request()->is('users*') ? 'active' : '' }}">
+                                            <a class="nav-link pl-0" href="{{ url('users/') }}"><i class="fas fa-users"></i>
+                                                <span class="d-none d-md-inline">Gebruikers</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item {{ request()->is('products*') ? 'active' : '' }}">
+                                            <a class="nav-link pl-0" href="{{ url('products/') }}"><i class="fas fa-barcode"></i>
+                                                <span class="d-none d-md-inline">Producten</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item {{ request()->is('tables/exclude') ? 'active' : '' }}">
+                                            <a class="nav-link pl-0" href="{{ url('tables/exclude') }}"><i class="fas fa-ban"></i>
+                                                <span class="d-none d-md-inline">Tafels uitsluiten</span>
+                                            </a>
+                                        </li>
+                                        @endrole
+                                        <li class="nav-item">
+                                            <a class="nav-link pl-0" href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault();
+                                           document.getElementById('logout-form').submit();"><i class="fas fa-power-off"></i>
+                                                <span class="d-none d-md-inline">Uitloggen</span>
+                                            </a>
+                                        </li>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    @endauth
                             </ul>
                         </div>
                     </nav>
