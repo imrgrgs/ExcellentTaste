@@ -27,7 +27,7 @@ class OrdersController extends Controller
     public function create()
     {
         $products = Product::all();
-        $reservations = Reservation::all();
+        $reservations = Reservation::whereNull('nota')->get();
         $devices = ["Device 1", "Device 2", "Device 3"];
         // dd($products);
         return view('portal.orders.create', compact('products', 'reservations', 'devices'));

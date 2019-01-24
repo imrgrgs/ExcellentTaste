@@ -1,8 +1,17 @@
 @extends ('layouts.layout')
 
 @section ('content')
-    <div class="container mt-10 text-black-50 mb-5">
-        <div class="row">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="w-100 h-100" style="background: url('{{ url('img/close-up.jpg') }}') bottom; background-size: cover" alt="food"></div>
+            <div class="container">
+                <div class="carousel-caption text-left">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container text-black-50 mb-5">
+        <div class="row" style="margin-top: -100px;">
             <div class="card col-md-12">
                 <div class="card-body">
                     <h3 class="card-title">Menukaart</h3>
