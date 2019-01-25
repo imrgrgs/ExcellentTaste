@@ -1,0 +1,61 @@
+/*
+
+	Main CSS file for all pages.
+
+*/
+
+.navbar{
+	height:100vh;
+}
+
+.select2-container--default .select2-results__option[aria-disabled="true"] {
+	 color: #ff1f00 !important;
+ }
+
+.mt-10 {
+	margin-top: 6rem;
+}
+
+#company-name{
+	font-size: 26px;
+}
+
+.nav-item{
+	font-size: 20px;
+}
+
+.nav-item a{
+	margin-top: 10px;
+}
+
+.invalid-feedback{
+	display: block !important;
+}
+
+.featurette-divider{
+	background-color: #fff;
+}
+
+.pull-right{
+	float:right;
+}
+
+.border-bot{
+	border-bottom: 1px #e3e3e3 solid;
+}
+
+.fa-times-circle{
+	color: red;
+}
+
+.fa-plus-square{
+	color:green;
+}
+
+#save-but{
+	margin-left: 15px;
+}
+
+.margin-15{
+	margin-left: 15px;
+}
