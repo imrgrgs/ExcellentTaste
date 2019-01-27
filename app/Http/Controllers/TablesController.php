@@ -35,10 +35,10 @@ class TablesController extends Controller
     public function excludesJson()
     {
         $start = Carbon::parse(request()->get('start_date') . ' ' . request()->get('start_time'));
+        $end = Carbon::parse(request()->get('start_date') . ' ' . request()->get('start_time'))->addHours(2);
+
         if (\request()->has('end_date')) {
             $end = Carbon::parse(request()->get('end_date') . ' ' . request()->get('end_time'));
-        } else {
-            $end = Carbon::parse(request()->get('start_date') . ' ' . request()->get('start_time'))->addHours(2);
         }
 
         $tables = Table::whereHas('excluded', function ($q) use ($start, $end) {
@@ -52,8 +52,7 @@ class TablesController extends Controller
                 $q->whereBetween('start', [$start, $end])->orWhereBetween('end',[$start, $end]);
             })->orWhereHas('reservations', function ($q) use ($start, $end) {
                 $q->where('start', '<', $start)->where('end', '>', $end);
-            })->pluck('id'));
-            $tables = $tables->flatten();
+            })->pluck('id'))->flatten();
         }
 
         return $tables;
@@ -85,25 +84,21 @@ class TablesController extends Controller
             $table->excluded()->where('end', $end)->where('start', $start)->delete();
 
             // shift all the blockades of the table that end within the new period to the start of the new period
-            $table->excluded()->where(function ($q) use ($start, $end){
-                $q->whereBetween('end', [$start, $end]);
-            })->update([
-                'end' => $start
+            $shifted_back = $table->excluded()->whereBetween('end', [$start, $end])->update([
+                'end' => $end
             ]);
 
             // shift all the blockades of the table that start within the new period to the end of the new period
-            $table->excluded()->where(function ($q) use ($start, $end){
-                $q->whereBetween('start', [$start, $end]);
-            })->update([
-                'start' => $end
+            $shifted_forth = $table->excluded()->whereBetween('start', [$start, $end])->update([
+                'start' => $start
             ]);
 
-            if ($status === 'on') {
+            // if a item is shifted then dont execute this command
+            if ($shifted_back === 0 && $shifted_forth === 0 && $status === 'on') {
                 $table->excluded()->where(function ($q) use ($start, $end){
                     $q->where('start', '<', $start)->where('end', '>', $end);
                 })->delete();
 
-                // delete all the blockades of the table that start and end within the new period
                 $table->excluded()->create([
                     'start' => $start,
                     'end' => $end,
