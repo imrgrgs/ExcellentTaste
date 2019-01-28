@@ -10,7 +10,7 @@
         <hr>
         <ul>
             @foreach($table->excluded as $exclude)
-                <li>{{ $exclude->carbon_start->format('H:m') }} - {{ $exclude->carbon_end->format('H:m') }}</li>
+                <li>{{ $exclude->carbon_start->format('H:i') }} - {{ $exclude->carbon_end->format('H:i') }}</li>
             @endforeach
         </ul>
     @endforeach

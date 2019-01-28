@@ -27,7 +27,7 @@ class HoursBetween implements Rule
     public function passes($attribute, $value)
     {
         $time = explode(':', $value);
-        if ($time[0] === '21' && $time[1] === '00') {
+        if ($time[0] === '21' && $time[1] === '00' && $time[0] > Carbon::now()->format('h')) {
             return true;
         }
         return $time[0] < 21;
